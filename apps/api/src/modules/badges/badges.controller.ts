@@ -119,7 +119,7 @@ export class BadgesController {
       }
 
       await this.badgesService.deleteBadge(req.params.id);
-      res.status(204).send();
+      res.sendStatus(204);
     } catch (error: any) {
       if (error.message === 'Badge not found') {
         res.status(404).json({

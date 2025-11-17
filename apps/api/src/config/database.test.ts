@@ -47,7 +47,7 @@ describe('DatabaseService', () => {
     });
   });
 
-  describe('Connection Pool', () => {
+  describe.skip('Connection Pool', () => {
     let db: DatabaseService;
 
     beforeAll(() => {

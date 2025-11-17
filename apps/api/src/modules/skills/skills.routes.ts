@@ -182,4 +182,4 @@ router.get(
   (req, res) => skillsController.getMySkills(req, res)
 );
 
-export default router;
+export { router as skillsRouter };

@@ -30,6 +30,10 @@ describe('BadgesController', () => {
         responseData = data;
         return mockResponse;
       }),
+      sendStatus: vi.fn((code: number) => {
+        statusCode = code;
+        return mockResponse;
+      }),
     };
 
     // Mock the status method to capture the status code

@@ -89,26 +89,27 @@ export class BadgeCriteriaEvaluator {
       throw new Error('lesson_count criteria requires count in requirements');
     }
 
+    const params: any[] = [studentId];
+
     let query = `
       SELECT COUNT(*) as count
       FROM student_lesson_progress slp
     `;
 
-    const params: any[] = [studentId];
-
     if (category) {
       query += `
         JOIN lessons l ON slp.lesson_id = l.id
-        WHERE slp.student_id = $1
-          AND slp.status = 'completed'
-          AND l.category = $2
       `;
+    }
+
+    query += `
+      WHERE slp.student_id = $1
+        AND slp.status = 'completed'
+    `;
+
+    if (category) {
+      query += ` AND l.category = $2`;
       params.push(category);
-    } else {
-      query += `
-        WHERE slp.student_id = $1
-          AND slp.status = 'completed'
-      `;
     }
 
     const result = await this.db.query(query, params);
@@ -342,26 +343,27 @@ export class BadgeCriteriaEvaluator {
       throw new Error('lesson_count criteria requires count');
     }
 
+    const params: any[] = [studentId];
+
     let query = `
       SELECT COUNT(*) as count
       FROM student_lesson_progress slp
     `;
 
-    const params: any[] = [studentId];
-
     if (category) {
       query += `
         JOIN lessons l ON slp.lesson_id = l.id
-        WHERE slp.student_id = $1
-          AND slp.status = 'completed'
-          AND l.category = $2
       `;
+    }
+
+    query += `
+      WHERE slp.student_id = $1
+        AND slp.status = 'completed'
+    `;
+
+    if (category) {
+      query += ` AND l.category = $2`;
       params.push(category);
-    } else {
-      query += `
-        WHERE slp.student_id = $1
-          AND slp.status = 'completed'
-      `;
     }
 
     const result = await this.db.query(query, params);
