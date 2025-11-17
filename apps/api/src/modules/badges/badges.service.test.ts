@@ -287,7 +287,7 @@ describe('BadgesService', () => {
 
       expect(result).toBe(true);
       const queryCall = mockDb.query.mock.calls[0];
-      expect(queryCall[0]).toContain('lessons.category');
+      expect(queryCall[0]).toContain('l.category');
     });
 
     it('should check skill_level criteria', async () => {
