@@ -1,0 +1,131 @@
+/**
+ * STEM Lab Assistant - Theme CSS Custom Properties
+ * Allows runtime theme switching between color palettes
+ * Default: Palette C (Discovery Lab)
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors - Discovery Lab (Default) */
+    --color-primary: #5C6BC0; /* indigo */
+    --color-success: #66BB6A; /* green */
+    --color-warning: #FFA726; /* amber */
+    --color-info: #26C6DA; /* cyan */
+    --color-accent: #EC407A; /* pink */
+    --color-secondary: #9CCC65; /* lime */
+
+    /* Background & Text */
+    --color-background: #FAFAFA;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #424242;
+    --color-text-secondary: #757575;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Touch Targets */
+    --size-touch-min: 44px;
+    --size-button-height: 48px;
+    --size-button-width: 120px;
+    --size-input-height: 40px;
+    --size-icon-min: 24px;
+    --size-icon-touch: 44px;
+
+    /* Border Radius */
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 12px;
+
+    /* Shadows */
+    --shadow-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-elevation-3: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    /* Transitions */
+    --transition-fast: 200ms;
+    --transition-normal: 250ms;
+    --transition-slow: 300ms;
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Typography */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --line-height-child: 1.618;
+
+    /* Layout - Console Style */
+    --layout-max-width: 1920px;
+    --layout-max-height: 1000px;
+    --layout-header-height: 80px;
+    --layout-sidebar-width: 200px;
+    --layout-right-panel-width: 300px;
+    --layout-footer-height: 100px;
+  }
+
+  /* Modern Tech palette theme */
+  [data-theme="modern"] {
+    --color-primary: #4A90E2;
+    --color-success: #7ED321;
+    --color-warning: #F5A623;
+    --color-info: #50C7C7;
+    --color-accent: #9B59B6;
+    --color-secondary: #95A5A6;
+  }
+
+  /* Explorer palette theme */
+  [data-theme="explorer"] {
+    --color-primary: #34495E;
+    --color-success: #1ABC9C;
+    --color-warning: #F39C12;
+    --color-info: #3498DB;
+    --color-accent: #E74C3C;
+    --color-secondary: #8E44AD;
+  }
+
+  /* Base styles for body */
+  body {
+    font-family: 'Gill Sans', 'Avenir Next', 'Futura', 'Helvetica Neue', sans-serif;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-child);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Ensure all interactive elements meet minimum touch target size */
+  button, a, input, select, textarea {
+    min-height: var(--size-touch-min);
+  }
+
+  /* Smooth transitions for theme switching */
+  * {
+    transition-property: color, background-color, border-color;
+    transition-duration: var(--transition-fast);
+    transition-timing-function: var(--transition-timing);
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes for common patterns */
+  .touch-target {
+    min-width: var(--size-touch-min);
+    min-height: var(--size-touch-min);
+  }
+
+  .console-container {
+    max-width: var(--layout-max-width);
+    max-height: var(--layout-max-height);
+  }
+}
