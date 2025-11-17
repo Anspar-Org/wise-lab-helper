@@ -15,14 +15,20 @@ import {
   CoachDashboard,
   CoachTeams,
   CoachStudents,
+  StudentRegistration,
+  StudentLogin,
+  CoachLogin,
 } from '@pages/index';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public route */}
+        {/* Public routes */}
         <Route path="/" element={<Landing />} />
+        <Route path="/auth/student-registration" element={<StudentRegistration />} />
+        <Route path="/auth/student-login" element={<StudentLogin />} />
+        <Route path="/auth/coach-login" element={<CoachLogin />} />
 
         {/* Student routes */}
         <Route

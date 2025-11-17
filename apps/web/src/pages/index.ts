@@ -4,6 +4,9 @@
 
 export { Landing } from './Landing';
 
+// Auth pages
+export { StudentRegistration, StudentLogin, CoachLogin } from './auth';
+
 // Student pages
 export { StudentDashboard } from './student/Dashboard';
 export { StudentLessons } from './student/Lessons';

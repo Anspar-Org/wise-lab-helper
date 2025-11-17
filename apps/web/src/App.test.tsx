@@ -19,7 +19,7 @@ describe('App', () => {
 
   it('should show landing page by default', () => {
     render(<App />);
-    expect(screen.getByText('Landing/Login Page')).toBeInTheDocument();
+    expect(screen.getByText('Learn, Build, Explore!')).toBeInTheDocument();
   });
 
   it('should render app with BrowserRouter', () => {
