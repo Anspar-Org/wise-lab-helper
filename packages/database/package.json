@@ -1,0 +1,17 @@
+{
+  "name": "@stemlab/database",
+  "version": "0.1.0",
+  "description": "Database schemas and migrations for STEM Lab Assistant",
+  "scripts": {
+    "migrate:up": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down",
+    "migrate:create": "node-pg-migrate create"
+  },
+  "dependencies": {
+    "pg": "^8.11.3",
+    "node-pg-migrate": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.10.9"
+  }
+}

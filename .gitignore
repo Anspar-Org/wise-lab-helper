@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+**/node_modules/
+package-lock.json
+**/package-lock.json
+
+# Build outputs
+dist/
+**/dist/
+build/
+**/build/
+
+# Test coverage
+coverage/
+**/coverage/
+.nyc_output/
+**/.nyc_output/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Uploads
+uploads/
+!uploads/.gitkeep
+
+# Vitest
+.vitest/
+**/.vitest/
+**/vitest/results.json
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.orig
