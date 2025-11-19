@@ -1,5 +1,17 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import request from 'supertest';
+
+// Mock database before importing app
+vi.mock('./config/database', () => ({
+  initializeDatabase: vi.fn(),
+  getDatabase: vi.fn(() => ({
+    healthCheck: vi.fn().mockResolvedValue(true),
+    isLocalOnly: vi.fn().mockReturnValue(true),
+    query: vi.fn(),
+    close: vi.fn(),
+  })),
+}));
+
 import app from './index';
 
 describe('API Health Check', () => {

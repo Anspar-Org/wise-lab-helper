@@ -56,8 +56,10 @@ describe('AuthController', () => {
       getUserById: vi.fn(),
     };
 
-    // Mock AuthService constructor
-    vi.mocked(AuthService).mockImplementation(() => mockAuthService);
+    // Mock AuthService constructor (Vitest 4.0 requires function, not arrow function)
+    vi.mocked(AuthService).mockImplementation(function() {
+      return mockAuthService;
+    });
 
     authController = new AuthController();
   });

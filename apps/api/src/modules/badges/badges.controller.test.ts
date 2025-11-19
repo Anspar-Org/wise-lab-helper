@@ -64,8 +64,10 @@ describe('BadgesController', () => {
       getAvailableBadges: vi.fn(),
     };
 
-    // Mock BadgesService constructor
-    vi.mocked(BadgesService).mockImplementation(() => mockBadgesService);
+    // Mock BadgesService constructor (Vitest 4.0 requires function, not arrow function)
+    vi.mocked(BadgesService).mockImplementation(function() {
+      return mockBadgesService;
+    });
 
     badgesController = new BadgesController();
   });
