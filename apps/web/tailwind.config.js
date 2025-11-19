@@ -94,9 +94,30 @@ export default {
       maxHeight: {
         'console': '1000px',
       },
+      borderRadius: {
+        'small': '4px',
+        'medium': '8px',
+        'large': '12px',
+      },
+      boxShadow: {
+        'elevation-1': '0 2px 4px rgba(0, 0, 0, 0.1)',
+        'elevation-2': '0 4px 8px rgba(0, 0, 0, 0.15)',
+        'elevation-3': '0 8px 16px rgba(0, 0, 0, 0.2)',
+      },
+      transitionDuration: {
+        'fast': '200ms',
+        'normal': '250ms',
+        'slow': '300ms',
+      },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+      },
       animation: {
         'badge-pop': 'scale-pop 0.3s ease-in-out',
         'slide-up': 'slide-up 0.2s ease-out',
+        'fade-in': 'fade-in 0.2s ease-in',
+        'spin-slow': 'spin 1s linear infinite',
       },
       keyframes: {
         'scale-pop': {
@@ -106,6 +127,10 @@ export default {
         'slide-up': {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
     },
