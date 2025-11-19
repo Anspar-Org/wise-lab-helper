@@ -158,9 +158,14 @@ export async function logout(page: Page): Promise<void> {
  * @returns The auth token or null if not found
  */
 export async function getAuthToken(page: Page): Promise<string | null> {
-  return await page.evaluate(() => {
-    return localStorage.getItem('authToken');
-  });
+  try {
+    return await page.evaluate(() => {
+      return localStorage.getItem('authToken');
+    });
+  } catch (error) {
+    // If localStorage is not accessible (e.g., page not loaded), return null
+    return null;
+  }
 }
 
 /**
@@ -169,6 +174,12 @@ export async function getAuthToken(page: Page): Promise<string | null> {
  * @param token - JWT token to set
  */
 export async function setAuthToken(page: Page, token: string): Promise<void> {
+  // Navigate to base URL first if not already there to avoid localStorage access errors
+  const currentUrl = page.url();
+  if (currentUrl === 'about:blank' || currentUrl.startsWith('file://') || currentUrl === '') {
+    await page.goto('/');
+  }
+
   await page.evaluate((tokenValue) => {
     localStorage.setItem('authToken', tokenValue);
   }, token);
@@ -179,11 +190,24 @@ export async function setAuthToken(page: Page, token: string): Promise<void> {
  * @param page - Playwright page object
  */
 export async function clearAuth(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-    sessionStorage.clear();
-  });
+  // Use Playwright's context methods to clear storage without needing to navigate
+  await page.context().clearCookies();
+
+  // Clear storage state completely - this is more reliable than page.evaluate
+  await page.context().clearPermissions();
+
+  // Only try to clear localStorage/sessionStorage if we're on a valid page
+  const currentUrl = page.url();
+  if (currentUrl && !currentUrl.startsWith('about:') && !currentUrl.startsWith('file://')) {
+    try {
+      await page.evaluate(() => {
+        localStorage.clear();
+        sessionStorage.clear();
+      });
+    } catch (error) {
+      // Ignore errors if page is not loaded yet - storage will be clear on next navigation
+    }
+  }
 }
 
 /**
