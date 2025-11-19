@@ -272,7 +272,7 @@ import type { User, Badge, Lesson } from '@stemlab/shared-types';
 ## Technology Stack
 
 **Backend (Current):**
-- Node.js 18+ with TypeScript
+- Node.js 20.19+ or 22.12+ with TypeScript (required by Vite 7+)
 - Express.js (REST API)
 - PostgreSQL 16 (database)
 - JWT (authentication)
