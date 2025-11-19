@@ -29,8 +29,8 @@
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
     "eslint": "^9.39.1",
-    "prettier": "^3.2.5",
-    "typescript": "^5.3.3"
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=20.19.0",
@@ -38,7 +38,8 @@
   },
   "overrides": {
     "node-pg-migrate": {
-      "glob": "11.1.0"
-    }
+      "glob": "^13.0.0"
+    },
+    "glob": "^13.0.0"
   }
 }
