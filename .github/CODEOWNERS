@@ -1,0 +1,29 @@
+# CODEOWNERS file
+# This file defines who owns specific parts of the codebase
+# GitHub automatically requests reviews from assigned owners when PRs are opened
+
+# Default owner for everything
+* @Anspar-Org
+
+# API backend and database
+/apps/api/ @Anspar-Org
+/packages/database/ @Anspar-Org
+
+# Frontend
+/apps/web/ @Anspar-Org
+
+# Infrastructure & CI/CD
+/.github/ @Anspar-Org
+/docker/ @Anspar-Org
+docker-compose.yml @Anspar-Org
+.github/workflows/ @Anspar-Org
+
+# Documentation - important for educational project
+/docs/ @Anspar-Org
+*.md @Anspar-Org
+CLAUDE.md @Anspar-Org
+
+# Configuration files
+package.json @Anspar-Org
+tsconfig.json @Anspar-Org
+.gitignore @Anspar-Org
