@@ -1,5 +1,4 @@
 import { test, expect } from '../fixtures';
-import { setupMockApi } from '../mocks/api';
 
 /**
  * Responsive Design E2E Tests
@@ -9,7 +8,6 @@ import { setupMockApi } from '../mocks/api';
 test.describe('Responsive Design', () => {
   test.beforeEach(async ({ page }) => {
     // Setup mock API
-    await setupMockApi(page);
   });
 
   test.describe('Desktop Viewport (1920x1000)', () => {

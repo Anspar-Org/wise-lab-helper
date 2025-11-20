@@ -1,5 +1,4 @@
 import { test, expect } from '../fixtures';
-import { setupMockApi } from '../mocks/api';
 import AxeBuilder from '@axe-core/playwright';
 
 /**
@@ -10,7 +9,6 @@ import AxeBuilder from '@axe-core/playwright';
 test.describe('Accessibility', () => {
   test.beforeEach(async ({ page }) => {
     // Setup mock API
-    await setupMockApi(page);
   });
 
   test.describe('WCAG Compliance - Axe Scans', () => {

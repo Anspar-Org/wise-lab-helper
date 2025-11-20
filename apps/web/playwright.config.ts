@@ -100,8 +100,10 @@ export default defineConfig({
     },
   ],
 
-  // Run your local dev server before starting the tests
-  webServer: {
+  // For local development, you can start services manually or use Docker Compose
+  // In CI, Docker Compose starts all services before tests
+  // Set PLAYWRIGHT_SKIP_SERVER=true to skip auto-starting services
+  webServer: process.env.PLAYWRIGHT_SKIP_SERVER ? undefined : {
     command: 'npm run dev',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,

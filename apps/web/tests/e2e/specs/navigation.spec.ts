@@ -1,5 +1,4 @@
 import { test, expect } from '../fixtures';
-import { setupMockApi } from '../mocks/api';
 
 /**
  * Navigation E2E Tests
@@ -9,7 +8,6 @@ import { setupMockApi } from '../mocks/api';
 test.describe('Navigation', () => {
   test.beforeEach(async ({ page }) => {
     // Setup mock API
-    await setupMockApi(page);
   });
 
   test.describe('Student Navigation', () => {

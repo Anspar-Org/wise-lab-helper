@@ -1,5 +1,4 @@
 import { test, expect } from '../fixtures';
-import { setupMockApi } from '../mocks/api';
 import {
   loginAsStudent,
   loginAsStudentAnimalGrid,
@@ -11,13 +10,11 @@ import {
 
 /**
  * Authentication E2E Tests
- * Tests for student and coach login/logout flows
+ * Tests for student and coach login/logout flows with real API
  */
 
 test.describe('Authentication', () => {
   test.beforeEach(async ({ page }) => {
-    // Setup mock API for all auth tests
-    await setupMockApi(page);
     // Clear any existing auth state
     await clearAuth(page);
   });

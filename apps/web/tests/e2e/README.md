@@ -1,159 +1,181 @@
-# End-to-End Testing Guide
-
-This directory contains end-to-end (E2E) tests for the STEM Lab Assistant frontend using [Playwright](https://playwright.dev/).
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-- [Running Tests](#running-tests)
-- [Test Structure](#test-structure)
-- [Writing Tests](#writing-tests)
-- [Page Object Model](#page-object-model)
-- [Test Data Management](#test-data-management)
-- [Debugging Tests](#debugging-tests)
-- [Best Practices](#best-practices)
-- [CI/CD Integration](#cicd-integration)
+# E2E Testing Guide - Full Stack Real API Testing
 
 ## Overview
 
-Our E2E tests cover critical user journeys including:
+This directory contains **true end-to-end tests** that run against the full application stack:
+- **Frontend**: Vite dev server (React app on port 5173)
+- **Backend**: Express API server (port 3001)
+- **Database**: PostgreSQL 16 (port 5433 for tests)
 
-- **Authentication**: Student PIN/animal grid login, coach email/password login
-- **Navigation**: Page navigation, keyboard navigation, browser history
-- **Accessibility**: WCAG compliance, screen reader support, keyboard accessibility
-- **Responsive Design**: Desktop, tablet, and mobile viewports
-- **Core Features**: Lessons, notebook entries, skill assessments
+These tests use **real API calls** and **real database operations** - no mocking!
 
-## Getting Started
+## Architecture
+
+```
+┌─────────────────┐
+│  Playwright     │
+│  (Browser)      │
+└────────┬────────┘
+         │ HTTP
+         ▼
+┌─────────────────┐     ┌─────────────────┐
+│  Vite Server    │────▶│  Express API    │
+│  (Port 5173)    │     │  (Port 3001)    │
+└─────────────────┘     └────────┬────────┘
+                                 │ SQL
+                                 ▼
+                        ┌─────────────────┐
+                        │  PostgreSQL     │
+                        │  (Port 5433)    │
+                        └─────────────────┘
+```
+
+## Running E2E Tests
 
 ### Prerequisites
 
-- Node.js 18+
-- npm 9+
+- Docker and Docker Compose installed
+- Node.js 20+ and npm installed
+- All project dependencies installed (`npm install` from project root)
 
-### Installation
+### Option 1: Using Docker Compose (Recommended)
+
+This is the approach used in CI and ensures a clean, isolated environment.
 
 ```bash
-# Install dependencies (from apps/web directory)
-npm install
+# 1. Start the full stack with Docker Compose
+docker-compose -f docker-compose.test.yml up -d
 
-# Install Playwright browsers
-npx playwright install
+# 2. Wait for services to be healthy
+docker-compose -f docker-compose.test.yml ps
+
+# 3. Seed the test database
+npm run seed:e2e --workspace=packages/database
+
+# 4. Install Playwright browsers (first time only)
+cd apps/web && npx playwright install --with-deps
+
+# 5. Run the tests
+cd apps/web && PLAYWRIGHT_SKIP_SERVER=true npm run test:e2e
+
+# 6. Cleanup when done
+docker-compose -f docker-compose.test.yml down -v
 ```
 
-## Running Tests
+### Option 2: Manual Setup (Local Development)
 
-### Basic Commands
+Useful for debugging or when you want more control.
 
 ```bash
-# Run all tests (headless)
-npm run test:e2e
+# 1. Start PostgreSQL test database
+docker-compose -f docker-compose.test.yml up -d db-test
 
-# Run tests with UI mode (interactive)
-npm run test:e2e:ui
+# 2. Set environment variables
+export DATABASE_URL=postgresql://postgres:testpassword@localhost:5433/stemlab_test
 
-# Run tests in headed mode (see browser)
-npm run test:e2e:headed
+# 3. Run migrations
+cd packages/database && npm run migrate:up
 
-# Debug tests (step through)
-npm run test:e2e:debug
+# 4. Seed test data
+npm run seed:e2e --workspace=packages/database
 
-# View test report
-npm run test:e2e:report
+# 5. Start API server in one terminal
+cd apps/api && npm run dev
+
+# 6. Start web server in another terminal
+cd apps/web && npm run dev
+
+# 7. Run tests in a third terminal
+cd apps/web && PLAYWRIGHT_SKIP_SERVER=true npm run test:e2e
 ```
 
-### Browser-Specific Tests
+### Specific Test Runs
 
 ```bash
-# Run on Chromium only
-npm run test:e2e:chromium
-
-# Run on Firefox only
-npm run test:e2e:firefox
-
-# Run on WebKit only
-npm run test:e2e:webkit
+# Run specific browser
+npm run test:e2e:chromium  # Chromium only
+npm run test:e2e:firefox   # Firefox only
+npm run test:e2e:webkit    # WebKit only
 
 # Run mobile tests
 npm run test:e2e:mobile
-```
 
-### Running Specific Tests
-
-```bash
 # Run specific test file
 npx playwright test tests/e2e/specs/auth.spec.ts
 
-# Run specific test by name
-npx playwright test -g "should login with PIN"
+# Run in headed mode (see the browser)
+npx playwright test --headed
 
-# Run tests in a specific directory
-npx playwright test tests/e2e/specs/
+# Run in debug mode
+npx playwright test --debug
+
+# Run with UI mode
+npx playwright test --ui
 ```
 
-### Advanced Options
+## Test Data
 
-```bash
-# Run tests in parallel
-npx playwright test --workers=4
+Test data is seeded before each test run via `packages/database/seed-e2e.js`.
 
-# Run tests with specific timeout
-npx playwright test --timeout=60000
+**Students:**
+- `testStudent1` (PIN: `1234`, Grade 3)
+- `youngLearner` (Animal Grid: cat, dog, bird, fish, Grade K)
 
-# Update snapshots (for visual regression)
-npx playwright test --update-snapshots
+**Coaches:**
+- `coach1@test.com` (Password: `TestPassword123!`)
 
-# Run only failed tests
-npx playwright test --last-failed
-```
+**Lessons, Skills, Badges:**
+- See `packages/database/seed-e2e.js` for complete test data
 
-## Test Structure
+## Test Organization
 
 ```
 tests/e2e/
-├── fixtures/          # Test fixtures and test data
-│   └── index.ts       # Authenticated contexts, mock data generators
-├── helpers/           # Reusable test utilities
-│   └── auth.ts        # Authentication helper functions
-├── mocks/             # API mocking utilities
-│   └── api.ts         # Mock API responses
-├── pages/             # Page Object Models
-│   ├── LoginPage.ts
-│   ├── StudentDashboardPage.ts
-│   ├── LessonsPage.ts
-│   ├── NotebookPage.ts
-│   └── CoachDashboardPage.ts
-└── specs/             # Test specifications
-    ├── auth.spec.ts
-    ├── navigation.spec.ts
-    ├── accessibility.spec.ts
-    └── responsive.spec.ts
+├── specs/               # Test files (*.spec.ts)
+│   ├── auth.spec.ts    # Authentication flows
+│   ├── navigation.spec.ts
+│   ├── responsive.spec.ts
+│   └── accessibility.spec.ts
+├── pages/               # Page Object Models
+├── helpers/             # Test helper functions
+├── fixtures/            # Playwright fixtures and test data
+└── README.md           # This file
 ```
 
-## Writing Tests
+## Writing New Tests
 
-### Basic Test Template
+### Use Real API Calls
 
 ```typescript
-import { test, expect } from '../fixtures';
-import { setupMockApi } from '../mocks/api';
+test('should create a new lesson', async ({ page }) => {
+  await page.goto('/coach/lessons/new');
 
-test.describe('Feature Name', () => {
-  test.beforeEach(async ({ page }) => {
-    await setupMockApi(page);
-  });
+  // Fill form - this will make REAL API calls
+  await page.fill('[name="title"]', 'My New Lesson');
+  await page.fill('[name="description"]', 'Test lesson');
+  await page.click('button[type="submit"]');
 
-  test('should do something', async ({ page }) => {
-    // Arrange
-    await page.goto('/some-page');
+  // Verify - checks REAL database state
+  await expect(page).toHaveURL(/\/coach\/lessons\/\d+/);
+  await expect(page.locator('h1')).toContainText('My New Lesson');
+});
+```
 
-    // Act
-    await page.getByTestId('some-button').click();
+### No Mocking Required
 
-    // Assert
-    await expect(page).toHaveURL(/\/expected-url/);
-  });
+Tests automatically use the real backend - no mock setup needed!
+
+```typescript
+// ✅ NEW WAY (real E2E):
+test('should login', async ({ page }) => {
+  // Just test - real API is already running
+  await page.goto('/login');
+  await page.fill('[data-testid="username"]', 'testStudent1');
+  await page.fill('[data-testid="pin"]', '1234');
+  await page.click('button[type="submit"]');
+
+  // This hits the REAL API and REAL database!
+  await expect(page).toHaveURL(/\/student\/dashboard/);
 });
 ```
 
@@ -183,83 +205,42 @@ test('coach can view students', async ({ authenticatedCoachPage: page, coachDash
 });
 ```
 
-## Page Object Model
+## Debugging
 
-We use the Page Object Model (POM) pattern to encapsulate page-specific logic.
+### View Docker Logs
 
-### Creating a Page Object
+```bash
+# View all service logs
+docker-compose -f docker-compose.test.yml logs
 
-```typescript
-import { Page, Locator, expect } from '@playwright/test';
+# Follow logs in real-time
+docker-compose -f docker-compose.test.yml logs -f
 
-export class MyPage {
-  readonly page: Page;
-  readonly myButton: Locator;
-
-  constructor(page: Page) {
-    this.page = page;
-    this.myButton = page.getByTestId('my-button');
-  }
-
-  async goto() {
-    await this.page.goto('/my-page');
-    await expect(this.myButton).toBeVisible();
-  }
-
-  async clickButton() {
-    await this.myButton.click();
-  }
-
-  async expectSomething() {
-    await expect(this.myButton).toBeEnabled();
-  }
-}
+# View specific service logs
+docker-compose -f docker-compose.test.yml logs api-test
+docker-compose -f docker-compose.test.yml logs db-test
 ```
 
-### POM Conventions
+### Inspect Database
 
-1. **Locators as readonly properties**: Define all locators in the constructor
-2. **Navigation methods**: `goto()`, `navigateTo...()`
-3. **Action methods**: `fill...()`, `click...()`, `submit...()`
-4. **Assertion methods**: `expect...()`
-5. **Use data-testid**: Always prefer `data-testid` attributes for stable selectors
+```bash
+# Connect to test database
+docker-compose -f docker-compose.test.yml exec db-test psql -U postgres -d stemlab_test
 
-## Test Data Management
-
-### Using Test Data
-
-```typescript
-import { testData } from '../fixtures';
-
-test('student login', async ({ page }) => {
-  const student = testData.students.student1;
-  await loginAsStudent(page, student.username, student.pin);
-});
+# Run SQL queries
+SELECT * FROM users;
+SELECT * FROM lessons;
 ```
 
-### Generating Random Data
+### Playwright Inspector
 
-```typescript
-import { generateRandomStudent } from '../fixtures';
+```bash
+# Run with inspector
+npx playwright test --debug
 
-test('register new student', async ({ page }) => {
-  const student = generateRandomStudent();
-  await registerStudent(page, student.username, student.avatar, student.pin, student.grade);
-});
+# Generate screenshots on failure (already configured)
+# Check apps/web/test-results/ after test run
 ```
-
-### Mock API
-
-```typescript
-import { setupMockApi } from '../mocks/api';
-
-test.beforeEach(async ({ page }) => {
-  // Enable API mocking for all requests
-  await setupMockApi(page);
-});
-```
-
-## Debugging Tests
 
 ### UI Mode (Recommended)
 
@@ -274,250 +255,93 @@ This opens an interactive UI where you can:
 - Inspect DOM snapshots
 - View network requests
 
-### Debug Mode
+## CI/CD Integration
+
+GitHub Actions workflow (`.github/workflows/playwright.yml`) automatically:
+
+1. Starts Docker Compose stack
+2. Waits for services to be healthy
+3. Seeds test database
+4. Runs Playwright tests across all browsers
+5. Uploads test reports and screenshots
+6. Cleans up Docker containers
+
+No manual intervention needed!
+
+## Common Issues
+
+### Port Conflicts
+
+If ports 3001, 5173, or 5433 are in use:
 
 ```bash
-npm run test:e2e:debug
+# Check what's using the ports
+lsof -i :3001
+lsof -i :5173
+lsof -i :5433
+
+# Stop conflicting services or modify docker-compose.test.yml ports
 ```
 
-This opens the Playwright Inspector where you can:
-- Step through test execution
-- Set breakpoints
-- Inspect page state
-- Try selectors
+### Database Connection Errors
 
-### VS Code Debugging
+```bash
+# Ensure database is healthy
+docker-compose -f docker-compose.test.yml ps
 
-Add to `.vscode/launch.json`:
+# Restart database
+docker-compose -f docker-compose.test.yml restart db-test
 
-```json
-{
-  "type": "node",
-  "request": "launch",
-  "name": "Playwright Tests",
-  "program": "${workspaceFolder}/apps/web/node_modules/@playwright/test/cli.js",
-  "args": ["test", "--headed", "--debug"],
-  "cwd": "${workspaceFolder}/apps/web"
-}
+# Check logs
+docker-compose -f docker-compose.test.yml logs db-test
 ```
 
-### Console Logging
+### Tests Timing Out
+
+Tests may timeout if services aren't fully ready. Increase timeouts in `playwright.config.ts`:
 
 ```typescript
-test('debug test', async ({ page }) => {
-  // Log to console
-  console.log('Current URL:', page.url());
-
-  // Attach page console to test output
-  page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-
-  // Take screenshot
-  await page.screenshot({ path: 'debug.png' });
-});
-```
-
-### Trace Viewer
-
-After a test failure:
-
-```bash
-npx playwright show-trace test-results/path-to-trace.zip
+timeout: 30 * 1000,  // Increase to 60 * 1000 if needed
 ```
 
 ## Best Practices
 
-### 1. Use data-testid Attributes
+1. **Always clean up**: Run `docker-compose down -v` after testing to avoid stale data
+2. **Use Page Objects**: Keep tests maintainable with the Page Object pattern
+3. **Test real user flows**: Focus on complete user journeys, not isolated UI components
+4. **Verify data persistence**: Check that data survives page reloads and sessions
+5. **Test error handling**: Verify real backend errors are handled correctly
+6. **Keep tests independent**: Each test should be able to run in isolation
 
-**Good:**
-```typescript
-await page.getByTestId('student-username-input').fill('john');
-```
+## Performance
 
-**Bad:**
-```typescript
-await page.locator('input[name="username"]').fill('john');
-```
+- **Full stack startup**: ~30-60 seconds (Docker Compose + health checks)
+- **Test database seeding**: ~2-5 seconds
+- **Average test run**: ~2-10 seconds per test
+- **Total E2E suite**: ~5-10 minutes (all browsers in parallel)
 
-### 2. Write Deterministic Tests
+## Migration from Mock Tests
 
-**Good:**
-```typescript
-// Wait for specific conditions
-await expect(page.getByTestId('loading')).not.toBeVisible();
-await expect(page.getByTestId('content')).toBeVisible();
-```
+The mock infrastructure has been removed. All tests now run against the real API.
 
-**Bad:**
-```typescript
-// Arbitrary waits
-await page.waitForTimeout(3000);
-```
+**What changed:**
+- ❌ Removed: `tests/e2e/mocks/` directory
+- ❌ Removed: `setupMockApi()` calls
+- ✅ Added: Docker Compose test environment
+- ✅ Added: Database seeding script
+- ✅ Added: Real full-stack orchestration
 
-### 3. Clean Up Test Data
+**Benefits:**
+- Test real integration between frontend, backend, and database
+- Catch authentication bugs (JWT, sessions, CORS)
+- Verify data persistence and migrations
+- Test FERPA/COPPA compliance features
+- Confidence in production deployment
 
-```typescript
-test.afterEach(async ({ page }) => {
-  // Clear auth state
-  await clearAuth(page);
-});
-```
+## Questions?
 
-### 4. Test One Thing at a Time
-
-**Good:**
-```typescript
-test('should login with valid credentials', async ({ page }) => {
-  await loginAsStudent(page, 'user', '1234');
-  await expect(page).toHaveURL(/\/dashboard/);
-});
-
-test('should show error with invalid credentials', async ({ page }) => {
-  await loginAsStudent(page, 'user', '9999');
-  await expect(page.getByTestId('error-message')).toBeVisible();
-});
-```
-
-**Bad:**
-```typescript
-test('should handle login', async ({ page }) => {
-  // Testing multiple scenarios in one test
-  await loginAsStudent(page, 'user', '1234');
-  await logout(page);
-  await loginAsStudent(page, 'user', '9999');
-});
-```
-
-### 5. Use Page Object Methods
-
-**Good:**
-```typescript
-await loginPage.loginAsStudentWithPin('user', '1234');
-await studentDashboard.expectLoggedIn();
-```
-
-**Bad:**
-```typescript
-await page.getByTestId('username').fill('user');
-await page.getByTestId('submit').click();
-await page.getByTestId('pin-0').fill('1');
-// etc...
-```
-
-### 6. Keep Tests Independent
-
-Each test should be able to run in isolation:
-
-```typescript
-test.beforeEach(async ({ page }) => {
-  // Set up clean state
-  await setupMockApi(page);
-  await clearAuth(page);
-});
-```
-
-### 7. Accessibility Testing
-
-Include accessibility checks:
-
-```typescript
-import AxeBuilder from '@axe-core/playwright';
-
-test('should have no accessibility violations', async ({ page }) => {
-  await page.goto('/login');
-
-  const accessibilityScanResults = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa'])
-    .analyze();
-
-  expect(accessibilityScanResults.violations).toEqual([]);
-});
-```
-
-## CI/CD Integration
-
-Tests automatically run on:
-- Push to `main`, `develop`, or `feature/**` branches
-- Pull requests to `main` or `develop`
-
-### GitHub Actions
-
-See `.github/workflows/playwright.yml` for the complete configuration.
-
-Tests run on:
-- **Desktop browsers**: Chromium, Firefox, WebKit
-- **Mobile viewports**: iPad, iPad Mini
-- **Accessibility suite**: Axe scans
-
-### Viewing CI Results
-
-After a CI run:
-1. Go to the Actions tab in GitHub
-2. Click on the workflow run
-3. Download artifacts (test reports, screenshots, videos)
-
-## E2E vs Component Tests
-
-### When to Use E2E Tests
-
-- User journeys across multiple pages
-- Integration between frontend and backend
-- Browser-specific functionality
-- Accessibility compliance
-- Responsive design verification
-
-### When to Use Component Tests (Vitest)
-
-- Individual component logic
-- Component props and state
-- User interactions within a component
-- Component rendering variations
-- Fast feedback during development
-
-## Common Issues
-
-### Test Timeouts
-
-If tests timeout, increase the timeout:
-
-```typescript
-test('slow test', async ({ page }) => {
-  test.setTimeout(60000); // 60 seconds
-  // ... test code
-});
-```
-
-### Flaky Tests
-
-Avoid flaky tests by:
-- Waiting for specific conditions, not arbitrary timeouts
-- Using `expect().toBeVisible()` instead of `isVisible()`
-- Ensuring test independence
-- Checking for loading states
-
-### CI Failures
-
-If tests pass locally but fail in CI:
-- Check viewport size differences
-- Verify browser versions
-- Review CI logs and artifacts
-- Run tests with `CI=true` locally
-
-## Getting Help
-
-- [Playwright Documentation](https://playwright.dev/)
-- [Playwright Discord](https://discord.com/invite/playwright)
-- Team Slack channel: #testing
-
-## Contributing
-
-When adding new tests:
-1. Follow the existing structure and conventions
-2. Use Page Object Model for new pages
-3. Add test data to `fixtures/index.ts`
-4. Update this README if adding new patterns
-5. Ensure tests pass locally before committing
-6. Use descriptive test names
-
-## License
-
-Internal use only - STEM Lab Assistant project
+See:
+- `docker-compose.test.yml` - Service configuration
+- `packages/database/seed-e2e.js` - Test data setup
+- `.github/workflows/playwright.yml` - CI configuration
+- `playwright.config.ts` - Playwright settings

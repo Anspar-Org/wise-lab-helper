@@ -1,6 +1,9 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
+
+# Install curl for healthcheck
+RUN apk add --no-cache curl
 
 # Copy package files
 COPY package*.json ./
@@ -13,9 +16,10 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build TypeScript
-RUN npm run build --workspace=apps/api --if-present
+# Copy database package for migrations
+COPY packages/database ./packages/database
 
 EXPOSE 3001
 
+# Default command (can be overridden)
 CMD ["npm", "run", "dev", "--workspace=apps/api"]
