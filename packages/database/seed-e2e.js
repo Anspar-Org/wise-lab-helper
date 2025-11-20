@@ -130,7 +130,6 @@ async function clearDatabase() {
     await pool.query('TRUNCATE TABLE student_skills CASCADE');
     await pool.query('TRUNCATE TABLE student_lesson_progress CASCADE');
     await pool.query('TRUNCATE TABLE lesson_steps CASCADE');
-    await pool.query('TRUNCATE TABLE notebook_media CASCADE');
     await pool.query('TRUNCATE TABLE notebook_entries CASCADE');
     await pool.query('TRUNCATE TABLE badges CASCADE');
     await pool.query('TRUNCATE TABLE skills CASCADE');
