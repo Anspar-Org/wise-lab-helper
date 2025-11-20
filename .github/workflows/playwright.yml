@@ -259,6 +259,9 @@ jobs:
     needs: [test, test-mobile, accessibility]
     runs-on: ubuntu-latest
     if: always()
+    permissions:
+      pull-requests: write
+      issues: write
 
     steps:
       - name: Download all artifacts
