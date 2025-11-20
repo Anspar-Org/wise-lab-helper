@@ -267,7 +267,7 @@ jobs:
           path: all-reports
 
       - name: List artifacts
-        run: ls -R all-reports
+        run: ls -R all-reports 2>/dev/null || echo "No artifacts directory found (tests may have failed during setup)"
 
       - name: Generate combined report
         run: |
