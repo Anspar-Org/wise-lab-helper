@@ -44,10 +44,10 @@ This is the approach used in CI and ensures a clean, isolated environment.
 
 ```bash
 # 1. Start the full stack with Docker Compose
-docker-compose -f docker-compose.test.yml up -d
+docker compose -f docker-compose.test.yml up -d
 
 # 2. Wait for services to be healthy
-docker-compose -f docker-compose.test.yml ps
+docker compose -f docker-compose.test.yml ps
 
 # 3. Seed the test database
 npm run seed:e2e --workspace=packages/database
@@ -59,7 +59,7 @@ cd apps/web && npx playwright install --with-deps
 cd apps/web && PLAYWRIGHT_SKIP_SERVER=true npm run test:e2e
 
 # 6. Cleanup when done
-docker-compose -f docker-compose.test.yml down -v
+docker compose -f docker-compose.test.yml down -v
 ```
 
 ### Option 2: Manual Setup (Local Development)
@@ -68,7 +68,7 @@ Useful for debugging or when you want more control.
 
 ```bash
 # 1. Start PostgreSQL test database
-docker-compose -f docker-compose.test.yml up -d db-test
+docker compose -f docker-compose.test.yml up -d db-test
 
 # 2. Set environment variables
 export DATABASE_URL=postgresql://postgres:testpassword@localhost:5433/stemlab_test
@@ -211,21 +211,21 @@ test('coach can view students', async ({ authenticatedCoachPage: page, coachDash
 
 ```bash
 # View all service logs
-docker-compose -f docker-compose.test.yml logs
+docker compose -f docker-compose.test.yml logs
 
 # Follow logs in real-time
-docker-compose -f docker-compose.test.yml logs -f
+docker compose -f docker-compose.test.yml logs -f
 
 # View specific service logs
-docker-compose -f docker-compose.test.yml logs api-test
-docker-compose -f docker-compose.test.yml logs db-test
+docker compose -f docker-compose.test.yml logs api-test
+docker compose -f docker-compose.test.yml logs db-test
 ```
 
 ### Inspect Database
 
 ```bash
 # Connect to test database
-docker-compose -f docker-compose.test.yml exec db-test psql -U postgres -d stemlab_test
+docker compose -f docker-compose.test.yml exec db-test psql -U postgres -d stemlab_test
 
 # Run SQL queries
 SELECT * FROM users;
@@ -287,13 +287,13 @@ lsof -i :5433
 
 ```bash
 # Ensure database is healthy
-docker-compose -f docker-compose.test.yml ps
+docker compose -f docker-compose.test.yml ps
 
 # Restart database
-docker-compose -f docker-compose.test.yml restart db-test
+docker compose -f docker-compose.test.yml restart db-test
 
 # Check logs
-docker-compose -f docker-compose.test.yml logs db-test
+docker compose -f docker-compose.test.yml logs db-test
 ```
 
 ### Tests Timing Out
