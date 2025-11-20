@@ -54,47 +54,35 @@ const TEST_DATA = {
   lessons: [
     {
       title: 'Introduction to VEX IQ',
-      description: 'Learn the basics of VEX IQ robotics',
-      category: 'robotics',
-      grade_level: JSON.stringify(['3', '4', '5']),
+      content: { description: 'Learn the basics of VEX IQ robotics', sections: [] },
+      category: 'technical',
+      grade_level: '3',
       duration_minutes: 30,
-      learning_objectives: JSON.stringify(['Understand robot parts', 'Identify basic components']),
-      is_published: true
+      learning_objectives: ['Understand robot parts', 'Identify basic components'],
+      published: true
     },
     {
       title: 'Building Your First Robot',
-      description: 'Step-by-step guide to building a simple robot',
-      category: 'build',
-      grade_level: JSON.stringify(['3', '4', '5']),
+      content: { description: 'Step-by-step guide to building a simple robot', sections: [] },
+      category: 'technical',
+      grade_level: '4',
       duration_minutes: 45,
-      learning_objectives: JSON.stringify(['Follow build instructions', 'Use tools properly']),
-      is_published: true
+      learning_objectives: ['Follow build instructions', 'Use tools properly'],
+      published: true
     },
   ],
   skills: [
     {
       name: 'Problem Solving',
-      category: 'engineering_practices',
+      category: 'engineering_process',
       description: 'Ability to identify and solve engineering problems',
-      grade_level: JSON.stringify(['K', '1', '2', '3', '4', '5']),
-      rubric_criteria: JSON.stringify({
-        emerging: 'Identifies problems with help',
-        developing: 'Identifies problems independently',
-        proficient: 'Solves problems with guidance',
-        advanced: 'Solves complex problems independently'
-      })
+      grade_level: '3'
     },
     {
       name: 'Team Collaboration',
-      category: 'soft_skills',
+      category: 'teamwork',
       description: 'Working effectively with team members',
-      grade_level: JSON.stringify(['K', '1', '2', '3', '4', '5']),
-      rubric_criteria: JSON.stringify({
-        emerging: 'Participates in group activities',
-        developing: 'Contributes ideas to the team',
-        proficient: 'Actively collaborates with peers',
-        advanced: 'Leads team activities and helps others'
-      })
+      grade_level: '4'
     },
   ],
   badges: [
@@ -102,22 +90,22 @@ const TEST_DATA = {
       name: 'First Steps',
       description: 'Complete your first lesson',
       icon: 'trophy',
-      category: 'achievement',
-      criteria: JSON.stringify({
+      category: 'engagement',
+      criteria: {
         type: 'lesson_completion',
         count: 1
-      })
+      }
     },
     {
       name: 'Team Player',
       description: 'Demonstrate excellent teamwork',
       icon: 'users',
       category: 'skill',
-      criteria: JSON.stringify({
+      criteria: {
         type: 'skill_assessment',
         skill: 'Team Collaboration',
         level: 'proficient'
-      })
+      }
     },
   ],
 };
@@ -193,9 +181,9 @@ async function seedLessons() {
 
   for (const lesson of TEST_DATA.lessons) {
     await pool.query(
-      `INSERT INTO lessons (title, description, category, grade_level, duration_minutes, learning_objectives, is_published, created_at)
+      `INSERT INTO lessons (title, content, category, grade_level, duration_minutes, learning_objectives, published, created_at)
        VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())`,
-      [lesson.title, lesson.description, lesson.category, lesson.grade_level, lesson.duration_minutes, lesson.learning_objectives, lesson.is_published]
+      [lesson.title, lesson.content, lesson.category, lesson.grade_level, lesson.duration_minutes, lesson.learning_objectives, lesson.published]
     );
   }
 
@@ -210,9 +198,9 @@ async function seedSkills() {
 
   for (const skill of TEST_DATA.skills) {
     await pool.query(
-      `INSERT INTO skills (name, category, description, grade_level, rubric_criteria, created_at)
-       VALUES ($1, $2, $3, $4, $5, NOW())`,
-      [skill.name, skill.category, skill.description, skill.grade_level, skill.rubric_criteria]
+      `INSERT INTO skills (name, category, description, grade_level, created_at)
+       VALUES ($1, $2, $3, $4, NOW())`,
+      [skill.name, skill.category, skill.description, skill.grade_level]
     );
   }
 
