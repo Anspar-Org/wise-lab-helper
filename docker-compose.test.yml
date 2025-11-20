@@ -48,7 +48,7 @@ services:
       start_period: 10s
     networks:
       - test-network
-    command: sh -c "npm run migrate:up --workspace=packages/database && npm run dev --workspace=apps/api"
+    command: npm run dev --workspace=apps/api
 
   # Web test server (Vite)
   web-test:

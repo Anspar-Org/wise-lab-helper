@@ -30,14 +30,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Start full stack with Docker Compose
-        run: docker compose -f docker-compose.test.yml up -d
+      - name: Start database
+        run: docker compose -f docker-compose.test.yml up -d db-test
         env:
           COMPOSE_HTTP_TIMEOUT: 200
 
       - name: Wait for database to be healthy
         run: |
           timeout 60 bash -c 'until docker compose -f docker-compose.test.yml exec -T db-test pg_isready -U postgres; do sleep 2; done'
+
+      - name: Run database migrations
+        run: npm run migrate:up --workspace=packages/database
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
+
+      - name: Seed test database
+        run: npm run seed:e2e --workspace=packages/database
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
+
+      - name: Start API and web servers
+        run: docker compose -f docker-compose.test.yml up -d api-test web-test
+        env:
+          COMPOSE_HTTP_TIMEOUT: 200
 
       - name: Wait for API to be healthy
         run: |
@@ -46,11 +61,6 @@ jobs:
       - name: Wait for web server to be ready
         run: |
           timeout 120 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
-
-      - name: Seed test database
-        run: npm run seed:e2e --workspace=packages/database
-        env:
-          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps ${{ matrix.project == 'chromium-desktop' && 'chromium' || matrix.project == 'firefox-desktop' && 'firefox' || 'webkit' }}
@@ -106,14 +116,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Start full stack with Docker Compose
-        run: docker compose -f docker-compose.test.yml up -d
+      - name: Start database
+        run: docker compose -f docker-compose.test.yml up -d db-test
         env:
           COMPOSE_HTTP_TIMEOUT: 200
 
       - name: Wait for database to be healthy
         run: |
           timeout 60 bash -c 'until docker compose -f docker-compose.test.yml exec -T db-test pg_isready -U postgres; do sleep 2; done'
+
+      - name: Run database migrations
+        run: npm run migrate:up --workspace=packages/database
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
+
+      - name: Seed test database
+        run: npm run seed:e2e --workspace=packages/database
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
+
+      - name: Start API and web servers
+        run: docker compose -f docker-compose.test.yml up -d api-test web-test
+        env:
+          COMPOSE_HTTP_TIMEOUT: 200
 
       - name: Wait for API to be healthy
         run: |
@@ -122,11 +147,6 @@ jobs:
       - name: Wait for web server to be ready
         run: |
           timeout 120 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
-
-      - name: Seed test database
-        run: npm run seed:e2e --workspace=packages/database
-        env:
-          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
@@ -174,14 +194,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Start full stack with Docker Compose
-        run: docker compose -f docker-compose.test.yml up -d
+      - name: Start database
+        run: docker compose -f docker-compose.test.yml up -d db-test
         env:
           COMPOSE_HTTP_TIMEOUT: 200
 
       - name: Wait for database to be healthy
         run: |
           timeout 60 bash -c 'until docker compose -f docker-compose.test.yml exec -T db-test pg_isready -U postgres; do sleep 2; done'
+
+      - name: Run database migrations
+        run: npm run migrate:up --workspace=packages/database
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
+
+      - name: Seed test database
+        run: npm run seed:e2e --workspace=packages/database
+        env:
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
+
+      - name: Start API and web servers
+        run: docker compose -f docker-compose.test.yml up -d api-test web-test
+        env:
+          COMPOSE_HTTP_TIMEOUT: 200
 
       - name: Wait for API to be healthy
         run: |
@@ -190,11 +225,6 @@ jobs:
       - name: Wait for web server to be ready
         run: |
           timeout 120 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
-
-      - name: Seed test database
-        run: npm run seed:e2e --workspace=packages/database
-        env:
-          DATABASE_URL: postgresql://postgres:testpassword@localhost:5433/stemlab_test
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
