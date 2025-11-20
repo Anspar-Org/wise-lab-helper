@@ -28,24 +28,27 @@ const TEST_DATA = {
   students: [
     {
       username: 'testStudent1',
+      display_name: 'Test Student 1',
       pin: '1234',
       grade: '3',
-      avatar: 'robot',
+      avatar: JSON.stringify({ style: 'robot' }),
       auth_method: 'pin'
     },
     {
       username: 'youngLearner',
-      animal_sequence: JSON.stringify(['cat', 'dog', 'bird', 'fish']),
+      display_name: 'Young Learner',
+      animal_pattern: JSON.stringify(['cat', 'dog', 'bird', 'fish']),
       grade: 'K',
-      avatar: 'dinosaur',
+      avatar: JSON.stringify({ style: 'dinosaur' }),
       auth_method: 'animal_grid'
     },
   ],
   coaches: [
     {
+      username: 'coach1',
       email: 'coach1@test.com',
       password: 'TestPassword123!',
-      name: 'Coach Smith'
+      display_name: 'Coach Smith'
     },
   ],
   lessons: [
@@ -151,11 +154,12 @@ async function seedStudents() {
 
   for (const student of TEST_DATA.students) {
     const hashedPin = student.pin ? await bcrypt.hash(student.pin, 10) : null;
+    const hashedAnimalPattern = student.animal_pattern ? await bcrypt.hash(student.animal_pattern, 10) : null;
 
     await pool.query(
-      `INSERT INTO users (username, pin_hash, animal_sequence, grade, avatar, role, auth_method, created_at)
-       VALUES ($1, $2, $3, $4, $5, 'student', $6, NOW())`,
-      [student.username, hashedPin, student.animal_sequence || null, student.grade, student.avatar, student.auth_method]
+      `INSERT INTO users (username, display_name, pin_hash, animal_pattern_hash, grade_level, avatar_config, role, auth_type, created_at)
+       VALUES ($1, $2, $3, $4, $5, $6, 'student', $7, NOW())`,
+      [student.username, student.display_name, hashedPin, hashedAnimalPattern, student.grade, student.avatar, student.auth_method]
     );
   }
 
@@ -172,9 +176,9 @@ async function seedCoaches() {
     const hashedPassword = await bcrypt.hash(coach.password, 10);
 
     await pool.query(
-      `INSERT INTO users (email, password_hash, name, role, auth_method, created_at)
-       VALUES ($1, $2, $3, 'coach', 'email_password', NOW())`,
-      [coach.email, hashedPassword, coach.name]
+      `INSERT INTO users (username, email, password_hash, display_name, role, auth_type, created_at)
+       VALUES ($1, $2, $3, $4, 'coach', 'password', NOW())`,
+      [coach.username, coach.email, hashedPassword, coach.display_name]
     );
   }
 
