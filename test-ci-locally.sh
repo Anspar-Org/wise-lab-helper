@@ -157,6 +157,20 @@ npm run migrate:up --workspace=packages/database
 print_success "Migrations completed"
 
 #==============================================================================
+# STEP 6a: Verify UUID extension is enabled
+#==============================================================================
+print_step "Verify UUID Extension"
+
+UUID_CHECK=$($DOCKER_COMPOSE_CMD -f "$COMPOSE_FILE" exec -T db-test psql -U postgres -d stemlab_test -tAc "SELECT COUNT(*) FROM pg_extension WHERE extname='uuid-ossp';")
+if [ "$UUID_CHECK" -eq "1" ]; then
+    print_success "UUID extension (uuid-ossp) is enabled"
+else
+    print_error "UUID extension (uuid-ossp) is NOT enabled"
+    print_info "Migration should have: CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"
+    exit 1
+fi
+
+#==============================================================================
 # STEP 7: Seed test database
 #==============================================================================
 print_step "Seed Test Database"

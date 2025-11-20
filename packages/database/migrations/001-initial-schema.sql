@@ -2,6 +2,9 @@
 -- Creates all core tables for STEM Lab Assistant
 -- Priority: Authentication, Learning Content, Skills, Engineering Notebook
 
+-- Enable UUID extension for uuid_generate_v4()
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- =====================================================
 -- USERS & AUTHENTICATION (Highest Priority)
 -- =====================================================
