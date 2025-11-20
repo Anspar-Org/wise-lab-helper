@@ -34,10 +34,10 @@ services:
       NODE_ENV: test
       PORT: 3001
       DATABASE_URL: postgresql://postgres:testpassword@db-test:5432/stemlab_test
+      DATABASE_LOCAL_ONLY: 'false'
       JWT_SECRET: test-jwt-secret-for-e2e-testing-only
       JWT_EXPIRES_IN: 24h
       CORS_ORIGIN: http://localhost:5173
-      LOCAL_ONLY_MODE: 'false'
     ports:
       - '3001:3001'
     healthcheck:
