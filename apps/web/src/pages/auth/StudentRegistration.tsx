@@ -152,7 +152,7 @@ const StudentRegistration: React.FC = () => {
               Step {currentStep} of 4
             </span>
           </div>
-          <ProgressBar progress={(currentStep / 4) * 100} />
+          <ProgressBar current={currentStep} max={4} showPercent={false} />
         </div>
 
         {/* Error Display */}
