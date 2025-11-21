@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { NotebookService } from './notebook.service';
 import { getDatabase } from '../../config/database';
 import { AuthenticatedRequest } from '../auth/auth.middleware';

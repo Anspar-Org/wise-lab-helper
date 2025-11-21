@@ -58,9 +58,6 @@ const avatarConfigSchema = z.object({
 // Grade level enum
 const gradeLevelSchema = z.nativeEnum(GradeLevel);
 
-// User role enum
-const userRoleSchema = z.nativeEnum(UserRole);
-
 // Auth type enum
 const authTypeSchema = z.nativeEnum(AuthType);
 

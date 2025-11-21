@@ -1,5 +1,5 @@
 import { DatabaseService } from '../../config/database';
-import { BadgeCriteria, SkillLevel } from '@stemlab/shared-types';
+import { BadgeCriteria } from '@stemlab/shared-types';
 
 /**
  * Badge Criteria Evaluator
@@ -316,7 +316,7 @@ export class BadgeCriteriaEvaluator {
    * Call a custom evaluation function
    */
   private async evaluateCustom(
-    studentId: string,
+    _studentId: string,
     criteria: BadgeCriteria
   ): Promise<boolean> {
     const { custom_check } = criteria.requirements;

@@ -54,12 +54,6 @@ const entryDateSchema = z.preprocess((arg) => {
 // Team ID validation (UUID or null)
 const teamIdSchema = z.string().uuid().optional().nullable();
 
-// Media URLs validation
-const mediaUrlsSchema = z
-  .array(z.string().url('Invalid media URL'))
-  .optional()
-  .default([]);
-
 /**
  * Create notebook entry validation
  */

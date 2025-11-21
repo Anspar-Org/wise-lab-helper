@@ -305,7 +305,7 @@ export class AuthController {
    * @param req - Express request
    * @param res - Express response
    */
-  async getAvatarStyles(req: Request, res: Response): Promise<void> {
+  async getAvatarStyles(_req: Request, res: Response): Promise<void> {
     try {
       const styles = AvatarService.getAvailableStyles();
       const studentFriendlyStyles = AvatarService.getStudentFriendlyStyles();

@@ -32,7 +32,7 @@ app.use(morgan('dev')); // HTTP request logging
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
 // Health check endpoint
-app.get('/health', async (req, res) => {
+app.get('/health', async (_req, res) => {
   const db = getDatabase();
   const dbHealthy = await db.healthCheck();
 
@@ -47,7 +47,7 @@ app.get('/health', async (req, res) => {
 });
 
 // API version endpoint
-app.get('/api/v1', (req, res) => {
+app.get('/api/v1', (_req, res) => {
   res.json({
     name: 'STEM Lab Assistant API',
     version: '0.1.0',
@@ -85,7 +85,7 @@ app.use((req, res) => {
 });
 
 // Error handler
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error('Error:', err);
   res.status(500).json({
     error: 'Internal Server Error',

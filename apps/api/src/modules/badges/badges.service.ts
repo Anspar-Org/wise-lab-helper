@@ -326,14 +326,14 @@ export class BadgesService {
    *
    * @param studentId - Student ID
    * @param badgeId - Badge ID
-   * @param coachId - Coach ID who is awarding
+   * @param _coachId - Coach ID who is awarding
    * @param evidence - Optional evidence information
    * @returns Awarded student badge
    */
   async manualAward(
     studentId: string,
     badgeId: string,
-    coachId: string,
+    _coachId: string,
     evidence?: { type: string; id: string }
   ): Promise<StudentBadge> {
     const query = `
