@@ -6,8 +6,7 @@
   "scripts": {
     "migrate:up": "node-pg-migrate up",
     "migrate:down": "node-pg-migrate down",
-    "migrate:create": "node-pg-migrate create",
-    "seed:e2e": "node seed-e2e.js"
+    "migrate:create": "node-pg-migrate create"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
