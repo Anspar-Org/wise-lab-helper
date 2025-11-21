@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { AuthenticatedRequest } from '../auth/auth.middleware';
 import { BadgesController } from './badges.controller';
 import { BadgesService } from './badges.service';
 import { BadgeCategory, UserRole } from '@stemlab/shared-types';
@@ -13,7 +14,7 @@ vi.mock('../../config/database', () => ({
 describe('BadgesController', () => {
   let badgesController: BadgesController;
   let mockBadgesService: any;
-  let mockRequest: Partial<Request>;
+  let mockRequest: Partial<AuthenticatedRequest>;
   let mockResponse: Partial<Response>;
   let responseData: any;
   let statusCode: number;
@@ -95,10 +96,10 @@ describe('BadgesController', () => {
 
       mockBadgesService.createBadge.mockResolvedValue(mockBadge);
       mockRequest.body = badgeData;
-      mockRequest.user = { role: UserRole.ADMIN };
+      mockRequest.user = { userId: 'admin-uuid', username: 'admin', role: UserRole.ADMIN };
 
       await badgesController.createBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -114,14 +115,14 @@ describe('BadgesController', () => {
         category: BadgeCategory.ENGAGEMENT,
         criteria: { type: 'lesson_count', requirements: { count: 1 } },
       };
-      mockRequest.user = { role: UserRole.ADMIN };
+      mockRequest.user = { userId: 'admin-uuid', username: 'admin', role: UserRole.ADMIN };
 
       mockBadgesService.createBadge.mockRejectedValue(
         new Error('Name must be between 1 and 200 characters')
       );
 
       await badgesController.createBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -136,10 +137,10 @@ describe('BadgesController', () => {
         category: BadgeCategory.ENGAGEMENT,
         criteria: { type: 'lesson_count', requirements: { count: 1 } },
       };
-      mockRequest.user = { role: UserRole.COACH };
+      mockRequest.user = { userId: 'coach-uuid', username: 'coach', role: UserRole.COACH };
 
       await badgesController.createBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -166,7 +167,7 @@ describe('BadgesController', () => {
       mockBadgesService.getAllBadges.mockResolvedValue(mockBadges);
 
       await badgesController.getAllBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -187,7 +188,7 @@ describe('BadgesController', () => {
       mockBadgesService.getAllBadges.mockResolvedValue(mockBadges);
 
       await badgesController.getAllBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -210,7 +211,7 @@ describe('BadgesController', () => {
       mockBadgesService.getBadgeById.mockResolvedValue(mockBadge);
 
       await badgesController.getBadgeById(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -223,7 +224,7 @@ describe('BadgesController', () => {
       mockBadgesService.getBadgeById.mockResolvedValue(null);
 
       await badgesController.getBadgeById(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -248,12 +249,12 @@ describe('BadgesController', () => {
 
       mockRequest.params = { id: 'badge-uuid' };
       mockRequest.body = updateData;
-      mockRequest.user = { role: UserRole.ADMIN };
+      mockRequest.user = { userId: 'admin-uuid', username: 'admin', role: UserRole.ADMIN };
 
       mockBadgesService.updateBadge.mockResolvedValue(mockUpdatedBadge);
 
       await badgesController.updateBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -264,10 +265,10 @@ describe('BadgesController', () => {
     it('should return 403 for non-admin users', async () => {
       mockRequest.params = { id: 'badge-uuid' };
       mockRequest.body = { name: 'Updated' };
-      mockRequest.user = { role: UserRole.STUDENT };
+      mockRequest.user = { userId: 'student-uuid', username: 'student', role: UserRole.STUDENT };
 
       await badgesController.updateBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -278,14 +279,14 @@ describe('BadgesController', () => {
     it('should return 404 for non-existent badge', async () => {
       mockRequest.params = { id: 'nonexistent' };
       mockRequest.body = { name: 'Updated' };
-      mockRequest.user = { role: UserRole.ADMIN };
+      mockRequest.user = { userId: 'admin-uuid', username: 'admin', role: UserRole.ADMIN };
 
       mockBadgesService.updateBadge.mockRejectedValue(
         new Error('Badge not found')
       );
 
       await badgesController.updateBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -296,12 +297,12 @@ describe('BadgesController', () => {
   describe('deleteBadge', () => {
     it('should delete badge (admin only)', async () => {
       mockRequest.params = { id: 'badge-uuid' };
-      mockRequest.user = { role: UserRole.ADMIN };
+      mockRequest.user = { userId: 'admin-uuid', username: 'admin', role: UserRole.ADMIN };
 
       mockBadgesService.deleteBadge.mockResolvedValue(undefined);
 
       await badgesController.deleteBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -311,10 +312,10 @@ describe('BadgesController', () => {
 
     it('should return 403 for non-admin users', async () => {
       mockRequest.params = { id: 'badge-uuid' };
-      mockRequest.user = { role: UserRole.COACH };
+      mockRequest.user = { userId: 'coach-uuid', username: 'coach', role: UserRole.COACH };
 
       await badgesController.deleteBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -334,12 +335,12 @@ describe('BadgesController', () => {
       ];
 
       mockRequest.params = { studentId: 'student-uuid' };
-      mockRequest.user = { id: 'student-uuid', role: UserRole.STUDENT };
+      mockRequest.user = { userId: 'student-uuid', username: 'student', role: UserRole.STUDENT };
 
       mockBadgesService.getStudentBadges.mockResolvedValue(mockBadges);
 
       await badgesController.getStudentBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -357,12 +358,12 @@ describe('BadgesController', () => {
       ];
 
       mockRequest.params = { studentId: 'other-student-uuid' };
-      mockRequest.user = { id: 'coach-uuid', role: UserRole.COACH };
+      mockRequest.user = { userId: 'coach-uuid', username: 'coach', role: UserRole.COACH };
 
       mockBadgesService.getStudentBadges.mockResolvedValue(mockBadges);
 
       await badgesController.getStudentBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -372,10 +373,10 @@ describe('BadgesController', () => {
 
     it('should return 403 if student tries to view other student badges', async () => {
       mockRequest.params = { studentId: 'other-student-uuid' };
-      mockRequest.user = { id: 'student-uuid', role: UserRole.STUDENT };
+      mockRequest.user = { userId: 'student-uuid', username: 'student', role: UserRole.STUDENT };
 
       await badgesController.getStudentBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -394,12 +395,12 @@ describe('BadgesController', () => {
         },
       ];
 
-      mockRequest.user = { id: 'student-uuid', role: UserRole.STUDENT };
+      mockRequest.user = { userId: 'student-uuid', username: 'student', role: UserRole.STUDENT };
 
       mockBadgesService.getStudentBadges.mockResolvedValue(mockBadges);
 
       await badgesController.getMyBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -428,12 +429,12 @@ describe('BadgesController', () => {
 
       mockRequest.params = { studentId: 'student-uuid' };
       mockRequest.body = awardData;
-      mockRequest.user = { id: 'coach-uuid', role: UserRole.COACH };
+      mockRequest.user = { userId: 'coach-uuid', username: 'coach', role: UserRole.COACH };
 
       mockBadgesService.manualAward.mockResolvedValue(mockAward);
 
       await badgesController.awardBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -450,10 +451,10 @@ describe('BadgesController', () => {
     it('should return 403 for non-coach users', async () => {
       mockRequest.params = { studentId: 'student-uuid' };
       mockRequest.body = { badge_id: 'badge-uuid' };
-      mockRequest.user = { id: 'student-uuid', role: UserRole.STUDENT };
+      mockRequest.user = { userId: 'student-uuid', username: 'student', role: UserRole.STUDENT };
 
       await badgesController.awardBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -464,14 +465,14 @@ describe('BadgesController', () => {
     it('should return 409 for duplicate award', async () => {
       mockRequest.params = { studentId: 'student-uuid' };
       mockRequest.body = { badge_id: 'badge-uuid' };
-      mockRequest.user = { id: 'coach-uuid', role: UserRole.COACH };
+      mockRequest.user = { userId: 'coach-uuid', username: 'coach', role: UserRole.COACH };
 
       mockBadgesService.manualAward.mockRejectedValue(
         new Error('Badge already awarded to this student')
       );
 
       await badgesController.awardBadge(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -489,12 +490,12 @@ describe('BadgesController', () => {
       };
 
       mockRequest.params = { studentId: 'student-uuid', badgeId: 'badge-uuid' };
-      mockRequest.user = { id: 'student-uuid', role: UserRole.STUDENT };
+      mockRequest.user = { userId: 'student-uuid', username: 'student', role: UserRole.STUDENT };
 
       mockBadgesService.getBadgeProgress.mockResolvedValue(mockProgress);
 
       await badgesController.getBadgeProgress(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
@@ -525,7 +526,7 @@ describe('BadgesController', () => {
       mockBadgesService.checkAndAwardBadges.mockResolvedValue(mockEarnedBadges);
 
       await badgesController.checkAndAwardBadges(
-        mockRequest as Request,
+        mockRequest as AuthenticatedRequest,
         mockResponse as Response
       );
 
