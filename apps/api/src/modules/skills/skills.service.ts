@@ -328,7 +328,8 @@ export class SkillsService {
     };
 
     profile.forEach(assessment => {
-      grouped[assessment.skill_category].push(assessment);
+      const category = assessment.skill_category as SkillCategory;
+      grouped[category].push(assessment);
     });
 
     return grouped;
