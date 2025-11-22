@@ -109,11 +109,18 @@ export class AvatarService {
       throw new Error(`Invalid avatar style: ${style}`);
     }
 
+    // Destructure to avoid duplicate properties and handle type conversions
+    const { seed, backgroundColor, style: _style, ...otherOptions } = config;
+
+    // Convert backgroundColor to array format required by DiceBear
+    const bgColorArray = backgroundColor
+      ? (Array.isArray(backgroundColor) ? backgroundColor : [backgroundColor])
+      : undefined;
+
     const avatar = createAvatar(collection, {
-      seed: config.seed,
-      backgroundColor: config.backgroundColor ? [config.backgroundColor] : undefined,
-      // Pass through any additional options
-      ...config,
+      seed,
+      backgroundColor: bgColorArray,
+      ...otherOptions,
     });
 
     return avatar.toString();

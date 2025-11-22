@@ -21,10 +21,10 @@ if (!fs.existsSync(uploadDir)) {
  * Configure storage engine
  */
 const storage = multer.diskStorage({
-  destination: (req: Request, file: Express.Multer.File, cb) => {
+  destination: (_req: Request, _file: Express.Multer.File, cb) => {
     cb(null, uploadDir);
   },
-  filename: (req: Request, file: Express.Multer.File, cb) => {
+  filename: (_req: Request, file: Express.Multer.File, cb) => {
     // Generate unique filename with timestamp and random suffix
     const uniqueSuffix =
       Date.now() + '-' + Math.random().toString(36).substring(2, 9);
@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
  * File filter to validate file types
  */
 const fileFilter = (
-  req: Request,
+  _req: Request,
   file: Express.Multer.File,
   cb: multer.FileFilterCallback
 ) => {
@@ -97,7 +97,7 @@ export const uploadMultiple = upload.array('files', 5);
 /**
  * Error handler for multer errors
  */
-export const handleUploadError = (err: any, req: Request, res: any, next: any) => {
+export const handleUploadError = (err: any, _req: Request, res: any, next: any) => {
   if (err instanceof multer.MulterError) {
     if (err.code === 'LIMIT_FILE_SIZE') {
       return res.status(400).json({

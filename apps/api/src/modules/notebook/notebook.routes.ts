@@ -5,7 +5,6 @@ import { validateRequest } from '../auth/auth.middleware';
 import {
   createNotebookEntrySchema,
   updateNotebookEntrySchema,
-  notebookQuerySchema,
   searchQuerySchema,
   entryIdParamSchema,
   mediaFilenameParamSchema,

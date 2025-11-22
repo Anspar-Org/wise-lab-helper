@@ -124,7 +124,7 @@ export function authorizeRoles(...allowedRoles: UserRole[]) {
  */
 export async function optionalAuth(
   req: AuthenticatedRequest,
-  res: Response,
+  _res: Response,
   next: NextFunction
 ): Promise<void> {
   const authHeader = req.headers.authorization;

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { SkillsService } from './skills.service';
 import { AuthenticatedRequest } from '../auth/auth.middleware';
-import { SkillCategory, GradeLevel, SkillLevel } from '@stemlab/shared-types';
+import { SkillCategory, GradeLevel } from '@stemlab/shared-types';
 
 /**
  * Skills Controller

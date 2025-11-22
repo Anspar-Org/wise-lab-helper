@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { AuthenticatedRequest } from '../auth/auth.middleware';
 import { BadgesService } from './badges.service';
 import { getDatabase } from '../../config/database';
 import { UserRole } from '@stemlab/shared-types';
@@ -20,7 +21,7 @@ export class BadgesController {
    * Create a new badge (Admin only)
    * POST /api/v1/badges
    */
-  createBadge = async (req: Request, res: Response): Promise<void> => {
+  createBadge = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       // Check authorization
       if (req.user?.role !== UserRole.ADMIN) {
@@ -42,7 +43,7 @@ export class BadgesController {
    * Get all badges (optionally filtered by category)
    * GET /api/v1/badges
    */
-  getAllBadges = async (req: Request, res: Response): Promise<void> => {
+  getAllBadges = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const category = req.query.category as any;
       const badges = await this.badgesService.getAllBadges(category);
@@ -56,7 +57,7 @@ export class BadgesController {
    * Get badge by ID
    * GET /api/v1/badges/:id
    */
-  getBadgeById = async (req: Request, res: Response): Promise<void> => {
+  getBadgeById = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const badge = await this.badgesService.getBadgeById(req.params.id);
 
@@ -78,7 +79,7 @@ export class BadgesController {
    * Update badge (Admin only)
    * PUT /api/v1/badges/:id
    */
-  updateBadge = async (req: Request, res: Response): Promise<void> => {
+  updateBadge = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       // Check authorization
       if (req.user?.role !== UserRole.ADMIN) {
@@ -107,7 +108,7 @@ export class BadgesController {
    * Delete badge (Admin only)
    * DELETE /api/v1/badges/:id
    */
-  deleteBadge = async (req: Request, res: Response): Promise<void> => {
+  deleteBadge = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       // Check authorization
       if (req.user?.role !== UserRole.ADMIN) {
@@ -136,14 +137,14 @@ export class BadgesController {
    * Get student badges
    * GET /api/v1/students/:studentId/badges
    */
-  getStudentBadges = async (req: Request, res: Response): Promise<void> => {
+  getStudentBadges = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const { studentId } = req.params;
 
       // Check authorization: students can only view their own, coaches/admins can view any
       if (
         req.user?.role === UserRole.STUDENT &&
-        req.user?.id !== studentId
+        req.user?.userId !== studentId
       ) {
         res.status(403).json({
           error: 'Forbidden',
@@ -163,9 +164,9 @@ export class BadgesController {
    * Get current user's badges
    * GET /api/v1/me/badges
    */
-  getMyBadges = async (req: Request, res: Response): Promise<void> => {
+  getMyBadges = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      if (!req.user?.id) {
+      if (!req.user?.userId) {
         res.status(401).json({
           error: 'Unauthorized',
           message: 'Authentication required',
@@ -173,7 +174,7 @@ export class BadgesController {
         return;
       }
 
-      const badges = await this.badgesService.getStudentBadges(req.user.id);
+      const badges = await this.badgesService.getStudentBadges(req.user.userId);
       res.status(200).json(badges);
     } catch (error: any) {
       this.handleError(res, error);
@@ -184,7 +185,7 @@ export class BadgesController {
    * Award badge to student (Coach/Admin only)
    * POST /api/v1/students/:studentId/badges
    */
-  awardBadge = async (req: Request, res: Response): Promise<void> => {
+  awardBadge = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       // Check authorization
       if (
@@ -209,7 +210,7 @@ export class BadgesController {
       const award = await this.badgesService.manualAward(
         studentId,
         badge_id,
-        req.user.id,
+        req.user.userId,
         evidence
       );
 
@@ -231,9 +232,9 @@ export class BadgesController {
    * GET /api/v1/students/:studentId/badges/:badgeId/progress
    * or GET /api/v1/me/badges/progress/:badgeId
    */
-  getBadgeProgress = async (req: Request, res: Response): Promise<void> => {
+  getBadgeProgress = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const studentId = req.params.studentId || req.user?.id;
+      const studentId = req.params.studentId || req.user?.userId;
       const { badgeId } = req.params;
 
       if (!studentId) {
@@ -247,7 +248,7 @@ export class BadgesController {
       // Check authorization: students can only view their own progress
       if (
         req.user?.role === UserRole.STUDENT &&
-        req.user?.id !== studentId
+        req.user?.userId !== studentId
       ) {
         res.status(403).json({
           error: 'Forbidden',
@@ -278,9 +279,9 @@ export class BadgesController {
    * Get all badge progress for current user
    * GET /api/v1/me/badges/progress
    */
-  getMyBadgeProgress = async (req: Request, res: Response): Promise<void> => {
+  getMyBadgeProgress = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      if (!req.user?.id) {
+      if (!req.user?.userId) {
         res.status(401).json({
           error: 'Unauthorized',
           message: 'Authentication required',
@@ -290,14 +291,14 @@ export class BadgesController {
 
       // Get all available badges
       const availableBadges = await this.badgesService.getAvailableBadges(
-        req.user.id
+        req.user.userId
       );
 
       // Get progress for each badge
       const progressList = await Promise.all(
         availableBadges.map(async (badge) => {
           const progress = await this.badgesService.getBadgeProgress(
-            req.user!.id,
+            req.user!.userId,
             badge.id
           );
           return {
@@ -317,7 +318,7 @@ export class BadgesController {
    * Check and award badges (Internal API)
    * POST /api/v1/badges/check-awards
    */
-  checkAndAwardBadges = async (req: Request, res: Response): Promise<void> => {
+  checkAndAwardBadges = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const { student_id, event } = req.body;
 
