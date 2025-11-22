@@ -5,11 +5,16 @@
   "scripts": {
     "migrate:up": "node-pg-migrate up",
     "migrate:down": "node-pg-migrate down",
-    "migrate:create": "node-pg-migrate create"
+    "migrate:create": "node-pg-migrate create",
+    "seed": "node seed.js",
+    "seed:clear": "node seed.js --clear",
+    "seed:phase1": "node seed.js --phase=1",
+    "seed:phase2": "node seed.js --phase=2",
+    "seed:phase3": "node seed.js --phase=3"
   },
   "dependencies": {
-    "pg": "^8.11.3",
-    "node-pg-migrate": "^7.0.2"
+    "pg": "8.13.1",
+    "node-pg-migrate": "8.0.3"
   },
   "devDependencies": {
     "@types/pg": "^8.10.9"

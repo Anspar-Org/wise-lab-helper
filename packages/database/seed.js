@@ -187,25 +187,32 @@ async function seedPhase2(client) {
   const skillsData = require('./seeds/phase2-skills.json');
   const badgesData = require('./seeds/phase2-badges.json');
 
-  // Seed intermediate lessons
+  if (lessonsData.length === 0 && skillsData.length === 0 && badgesData.length === 0) {
+    console.log('⏭️  Phase 2 data files are empty - skipping\n');
+    return;
+  }
+
+  // Use same structure as Phase 1
   console.log(`📚 Seeding ${lessonsData.length} intermediate lessons...`);
   for (const lesson of lessonsData) {
     const lessonResult = await client.query(`
       INSERT INTO lessons (
-        title, category, grade_level, duration_minutes, description,
-        learning_objectives, materials_needed, published
+        title, category, grade_level, duration_minutes, content,
+        learning_objectives, published
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `, [
       lesson.title,
       lesson.category,
       lesson.grade_level,
       lesson.duration_minutes,
-      lesson.description,
-      JSON.stringify(lesson.learning_objectives),
-      JSON.stringify(lesson.materials_needed),
-      lesson.published || true
+      JSON.stringify({
+        description: lesson.description,
+        materials_needed: lesson.materials_needed
+      }),
+      lesson.learning_objectives,
+      lesson.published !== false
     ]);
 
     const lessonId = lessonResult.rows[0].id;
@@ -214,16 +221,18 @@ async function seedPhase2(client) {
       for (const step of lesson.steps) {
         await client.query(`
           INSERT INTO lesson_steps (
-            lesson_id, step_number, title, content, estimated_minutes, resources
+            lesson_id, step_number, title, content
           )
-          VALUES ($1, $2, $3, $4, $5, $6)
+          VALUES ($1, $2, $3, $4::jsonb)
         `, [
           lessonId,
           step.step_number,
           step.title,
-          step.content,
-          step.estimated_minutes,
-          step.resources ? JSON.stringify(step.resources) : null
+          JSON.stringify({
+            text: step.content,
+            estimated_minutes: step.estimated_minutes,
+            resources: step.resources || []
+          })
         ]);
       }
     }
@@ -235,14 +244,14 @@ async function seedPhase2(client) {
   for (const skill of skillsData) {
     await client.query(`
       INSERT INTO skills (
-        name, category, description, proficiency_levels
+        name, category, description, grade_level
       )
       VALUES ($1, $2, $3, $4)
     `, [
       skill.name,
       skill.category,
       skill.description,
-      JSON.stringify(skill.proficiency_levels)
+      skill.grade_level
     ]);
     console.log(`  ✅ ${skill.name}`);
   }
@@ -251,15 +260,14 @@ async function seedPhase2(client) {
   for (const badge of badgesData) {
     await client.query(`
       INSERT INTO badges (
-        name, category, description, criteria, points, icon_url
+        name, category, description, criteria, icon
       )
-      VALUES ($1, $2, $3, $4, $5, $6)
+      VALUES ($1, $2, $3, $4::jsonb, $5)
     `, [
       badge.name,
       badge.category,
       badge.description,
-      badge.criteria,
-      badge.points,
+      JSON.stringify({ requirements: badge.criteria }),
       badge.icon_url || null
     ]);
     console.log(`  ✅ ${badge.name}`);
@@ -282,24 +290,32 @@ async function seedPhase3(client) {
   const skillsData = require('./seeds/phase3-skills.json');
   const badgesData = require('./seeds/phase3-badges.json');
 
+  if (lessonsData.length === 0 && skillsData.length === 0 && badgesData.length === 0) {
+    console.log('⏭️  Phase 3 data files are empty - skipping\n');
+    return;
+  }
+
+  // Use same structure as Phase 1 & 2
   console.log(`📚 Seeding ${lessonsData.length} advanced lessons...`);
   for (const lesson of lessonsData) {
     const lessonResult = await client.query(`
       INSERT INTO lessons (
-        title, category, grade_level, duration_minutes, description,
-        learning_objectives, materials_needed, published
+        title, category, grade_level, duration_minutes, content,
+        learning_objectives, published
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `, [
       lesson.title,
       lesson.category,
       lesson.grade_level,
       lesson.duration_minutes,
-      lesson.description,
-      JSON.stringify(lesson.learning_objectives),
-      JSON.stringify(lesson.materials_needed),
-      lesson.published || true
+      JSON.stringify({
+        description: lesson.description,
+        materials_needed: lesson.materials_needed
+      }),
+      lesson.learning_objectives,
+      lesson.published !== false
     ]);
 
     const lessonId = lessonResult.rows[0].id;
@@ -308,16 +324,18 @@ async function seedPhase3(client) {
       for (const step of lesson.steps) {
         await client.query(`
           INSERT INTO lesson_steps (
-            lesson_id, step_number, title, content, estimated_minutes, resources
+            lesson_id, step_number, title, content
           )
-          VALUES ($1, $2, $3, $4, $5, $6)
+          VALUES ($1, $2, $3, $4::jsonb)
         `, [
           lessonId,
           step.step_number,
           step.title,
-          step.content,
-          step.estimated_minutes,
-          step.resources ? JSON.stringify(step.resources) : null
+          JSON.stringify({
+            text: step.content,
+            estimated_minutes: step.estimated_minutes,
+            resources: step.resources || []
+          })
         ]);
       }
     }
@@ -329,14 +347,14 @@ async function seedPhase3(client) {
   for (const skill of skillsData) {
     await client.query(`
       INSERT INTO skills (
-        name, category, description, proficiency_levels
+        name, category, description, grade_level
       )
       VALUES ($1, $2, $3, $4)
     `, [
       skill.name,
       skill.category,
       skill.description,
-      JSON.stringify(skill.proficiency_levels)
+      skill.grade_level
     ]);
     console.log(`  ✅ ${skill.name}`);
   }
@@ -345,15 +363,14 @@ async function seedPhase3(client) {
   for (const badge of badgesData) {
     await client.query(`
       INSERT INTO badges (
-        name, category, description, criteria, points, icon_url
+        name, category, description, criteria, icon
       )
-      VALUES ($1, $2, $3, $4, $5, $6)
+      VALUES ($1, $2, $3, $4::jsonb, $5)
     `, [
       badge.name,
       badge.category,
       badge.description,
-      badge.criteria,
-      badge.points,
+      JSON.stringify({ requirements: badge.criteria }),
       badge.icon_url || null
     ]);
     console.log(`  ✅ ${badge.name}`);
