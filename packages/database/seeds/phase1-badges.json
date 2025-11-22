@@ -1,0 +1,82 @@
+[
+  {
+    "name": "First Builder",
+    "category": "skill",
+    "description": "Completed your first robot assembly",
+    "criteria": "Successfully build a functional robot base with wheels and motors that can drive",
+    "points": 10,
+    "icon_url": null
+  },
+  {
+    "name": "Code Starter",
+    "category": "skill",
+    "description": "Wrote and ran your first program",
+    "criteria": "Create and successfully run a program with at least 3 commands",
+    "points": 10,
+    "icon_url": null
+  },
+  {
+    "name": "Driver's Seat",
+    "category": "skill",
+    "description": "Successfully drove the robot in practice",
+    "criteria": "Drive the robot through a simple course without major collisions",
+    "points": 10,
+    "icon_url": null
+  },
+  {
+    "name": "Team Player",
+    "category": "team",
+    "description": "Participated in all four team roles",
+    "criteria": "Take a turn as Builder, Programmer, Driver, and Documenter",
+    "points": 15,
+    "icon_url": null
+  },
+  {
+    "name": "Notebook Keeper",
+    "category": "methodology",
+    "description": "Maintained engineering notebook entries",
+    "criteria": "Create 5 documented notebook entries with dates, sketches, and notes",
+    "points": 15,
+    "icon_url": null
+  },
+  {
+    "name": "Problem Spotter",
+    "category": "methodology",
+    "description": "Identified a design problem and proposed a solution",
+    "criteria": "Document a problem with the robot design and suggest an improvement",
+    "points": 20,
+    "icon_url": null
+  },
+  {
+    "name": "Safety Champion",
+    "category": "skill",
+    "description": "Perfect safety record for one month",
+    "criteria": "Follow all safety rules for 4 consecutive practice sessions with no incidents",
+    "points": 15,
+    "icon_url": null
+  },
+  {
+    "name": "Parts Expert",
+    "category": "skill",
+    "description": "Mastered identifying VEX IQ parts",
+    "criteria": "Correctly identify 20 different VEX IQ parts by name in a timed challenge",
+    "points": 15,
+    "icon_url": null
+  },
+  {
+    "name": "Sensor Explorer",
+    "category": "skill",
+    "description": "Successfully used a sensor in a program",
+    "criteria": "Write a program that uses sensor input to make a decision (IF-THEN)",
+    "points": 20,
+    "icon_url": null
+  },
+  {
+    "name": "Square Driver",
+    "category": "skill",
+    "description": "Programmed robot to drive in a square path",
+    "criteria": "Create a program that drives the robot in a square, returning to start within 6 inches",
+    "points": 20,
+    "icon_url": null
+  }
+]

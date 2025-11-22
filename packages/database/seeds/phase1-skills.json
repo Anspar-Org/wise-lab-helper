@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Part Identification",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Ability to correctly identify and name common VEX IQ parts. Progression: 5 basic parts (novice) → 15 common parts (developing) → 30+ parts (proficient) → all parts with functions (advanced)."
+  },
+  {
+    "name": "Basic Structural Assembly",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Building stable structures using beams, plates, and connectors. Progression: connect two beams with guidance → build simple rectangular frame → build stable robot base with bracing → design complex 3D structures."
+  },
+  {
+    "name": "Gear Understanding",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Knowledge of gear types, ratios, and applications. Progression: understands gears transfer motion → build 2-gear train → understand and calculate gear ratios → design gear trains for specific requirements."
+  },
+  {
+    "name": "Wheel and Drivetrain",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Building and optimizing robot drive systems. Progression: attach wheels to motors → build functional 4-wheel drive → build stable drivetrain with weight distribution → design advanced drivetrains."
+  },
+  {
+    "name": "Mechanism Design",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Creating functional mechanisms (claws, lifts, intakes). Progression: understand simple claw → build basic mechanism with help → independently design working mechanism → optimize for speed/strength/reliability."
+  },
+  {
+    "name": "Sensor Integration",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Mounting and wiring sensors on the robot. Progression: identify sensor types → mount one sensor properly → mount multiple sensors optimally → troubleshoot mounting and interference."
+  },
+  {
+    "name": "Tool Usage and Safety",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Safe and effective use of VEX IQ building tools. Progression: follow basic safety → use tools with supervision → use all tools independently and safely → teach tool safety to others."
+  },
+  {
+    "name": "Block Programming Basics",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Fundamental programming concepts using VEXcode IQ blocks. Progression: drag and connect blocks → create simple 3-5 block program → create 10+ block programs → write complex organized programs."
+  },
+  {
+    "name": "Sequential Commands",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Creating programs where commands execute in order. Progression: understand top-to-bottom execution → sequence 3-4 commands → plan 8+ step sequences → design complex precise sequences."
+  },
+  {
+    "name": "Motor Control",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Programming motors for movement and manipulation. Progression: make motors spin forward → control direction/speed/duration → coordinate multiple motors precisely → program advanced motor control with feedback."
+  },
+  {
+    "name": "Sensor Programming",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Using sensor input to make program decisions. Progression: understand sensors provide info → use one sensor in IF-THEN → use multiple sensors with logic → create complex sensor-based behaviors."
+  },
+  {
+    "name": "Conditional Logic",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Using IF-THEN-ELSE blocks to make decisions. Progression: understand making choices → use basic IF-THEN → use IF-THEN-ELSE and nested conditions → design complex decision trees."
+  },
+  {
+    "name": "Loops and Iteration",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Using loops to repeat actions efficiently. Progression: understand loops repeat → use simple repeat loop → use repeat/while/until appropriately → optimize programs with loops."
+  },
+  {
+    "name": "Debugging",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Finding and fixing errors in programs. Progression: recognize when program fails → find simple errors with help → systematically test and fix bugs → debug complex programs and help others."
+  },
+  {
+    "name": "Basic Robot Control",
+    "category": "technical",
+    "grade_level": "3",
+    "description": "Operating the robot with a controller. Progression: move forward/backward → drive all directions and turn → drive smoothly with control → master controller with fluid precise movements."
+  },
+  {
+    "name": "Precision Maneuvering",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Driving with accuracy and control. Progression: drive without constant collisions → navigate simple obstacles → drive through tight spaces → execute complex precise maneuvers under pressure."
+  },
+  {
+    "name": "Object Manipulation",
+    "category": "technical",
+    "grade_level": "4",
+    "description": "Using robot mechanisms to interact with game elements. Progression: activate mechanisms → pick up and release objects → score objects consistently → manipulate multiple objects efficiently in matches."
+  },
+  {
+    "name": "Active Listening",
+    "category": "teamwork",
+    "grade_level": "3",
+    "description": "Listening carefully to teammates' ideas and concerns. Progression: let others finish speaking → listen and repeat → ask clarifying questions and build on ideas → synthesize team discussions."
+  },
+  {
+    "name": "Clear Communication",
+    "category": "teamwork",
+    "grade_level": "3",
+    "description": "Expressing ideas clearly to teammates. Progression: say what you're thinking → explain with some details → explain technical concepts clearly → communicate complex ideas multiple ways."
+  },
+  {
+    "name": "Engineering Documentation",
+    "category": "engineering_process",
+    "grade_level": "4",
+    "description": "Recording design process in engineering notebook. Progression: write date and basic notes → document activities with sketches → create detailed entries with diagrams/analysis → maintain exemplary notebook with insights."
+  }
+]

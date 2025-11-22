@@ -1,0 +1,456 @@
+[
+  {
+    "title": "Your First VEX IQ Robot",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Build a simple 4-wheel drive robot base and learn basic robot assembly. This is your introduction to VEX IQ robotics!",
+    "learning_objectives": [
+      "Identify 10 basic VEX IQ structural and motion parts",
+      "Assemble a functional 4-wheel drive robot base",
+      "Test forward and backward movement with a controller",
+      "Document the build process in an engineering notebook"
+    ],
+    "materials_needed": [
+      "VEX IQ Clawbot Kit or equivalent",
+      "Smart Motors (2)",
+      "Robot Brain",
+      "Controller",
+      "Battery"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Parts Scavenger Hunt",
+        "content": "Lay out all parts from your kit. Identify and sort: structural beams (different lengths), connectors (pins, standoffs), Smart Motors, wheels, and the Robot Brain. Use the parts identification guide to learn the names.",
+        "estimated_minutes": 10,
+        "resources": [
+          "VEX IQ Parts Identification Poster",
+          "Clawbot instruction manual"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Build the Rectangular Frame",
+        "content": "Connect four 2x15 beams to create a rectangular base frame using corner connectors. Make sure all connections are secure by pushing pins all the way through.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Attach Motors and Wheels",
+        "content": "Mount one Smart Motor on each side of the frame. Attach wheels to the motor shafts. Ensure wheels spin freely without rubbing against the frame.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Test Drive",
+        "content": "Connect the Robot Brain and motors. Pair the controller. Test driving the robot forward, backward, and turning. Adjust wheel alignment if needed.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Document Your Build",
+        "content": "In your engineering notebook, draw your robot from the side and top view. Label at least 5 parts. Write 2-3 sentences about what you learned today.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Robot Parts Detective",
+    "category": "technical",
+    "grade_level": "3",
+    "duration_minutes": 30,
+    "description": "A fun scavenger hunt activity to learn the names and functions of 15 common VEX IQ parts.",
+    "learning_objectives": [
+      "Correctly identify and name 15 VEX IQ parts",
+      "Categorize parts by function (structure, motion, control)",
+      "Understand the purpose of each part type"
+    ],
+    "materials_needed": [
+      "VEX IQ parts kit",
+      "Parts identification cards",
+      "Sorting trays or bins"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Introduction to Part Families",
+        "content": "Learn about three part families: STRUCTURE (beams, plates, connectors), MOTION (motors, wheels, gears), and CONTROL (brain, sensors, battery).",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "Scavenger Hunt",
+        "content": "Find these parts in your kit: 2x10 beam, 2x15 beam, corner connector, standoff, Smart Motor, wheel, gear, Robot Brain, controller, battery, LED sensor, bumper switch, distance sensor, gyro sensor, cable.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Sort and Categorize",
+        "content": "Place each part in the correct family bin (Structure, Motion, or Control). Discuss why each part belongs in its category.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Your First Robot Program",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 30,
+    "description": "Write and test your first VEX IQ program to make the robot move forward, wait, and stop.",
+    "learning_objectives": [
+      "Understand basic sequential programming",
+      "Write a 3-command program (forward, wait, stop)",
+      "Test and debug a simple program",
+      "Measure and adjust robot movement distance"
+    ],
+    "materials_needed": [
+      "Assembled robot with Smart Motors",
+      "VEXcode IQ software (tablet or computer)",
+      "USB cable or wireless connection",
+      "Measuring tape"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Open VEXcode IQ",
+        "content": "Launch VEXcode IQ software. Create a new project named 'First Program'. Connect your robot via USB or wirelessly.",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "Build the Program",
+        "content": "Drag blocks into the workspace: [When started] → [Drive forward] → [Wait 2 seconds] → [Stop driving]. Set motor speed to 50%.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Download and Test",
+        "content": "Download the program to your robot. Place robot on the floor. Press Start. Measure how far it travels. Did it go the expected distance?",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Adjust and Improve",
+        "content": "Modify the wait time to make the robot travel exactly 12 inches (30 cm). Test multiple times. Record your final wait value.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Understanding Team Roles",
+    "category": "teamwork",
+    "grade_level": "3",
+    "duration_minutes": 20,
+    "description": "Learn about the four key roles in a VEX IQ team and practice rotating through each one.",
+    "learning_objectives": [
+      "Identify the four team roles: Builder, Programmer, Driver, and Documenter",
+      "Experience each role through hands-on practice",
+      "Understand how roles work together",
+      "Reflect on personal strengths and preferences"
+    ],
+    "materials_needed": [
+      "Robot kit",
+      "Engineering notebook",
+      "Controller",
+      "Computer with VEXcode"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Meet the Roles",
+        "content": "BUILDER: Assembles and modifies the robot. PROGRAMMER: Writes code for autonomous and driver control. DRIVER: Operates the robot during matches. DOCUMENTER: Records decisions, data, and progress in the notebook.",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "Role Rotation Activity",
+        "content": "Each team member tries each role for 3 minutes: build something small, write a simple program, drive the robot through cones, document the activity.",
+        "estimated_minutes": 12
+      },
+      {
+        "step_number": 3,
+        "title": "Reflection and Planning",
+        "content": "Discuss: Which role did you enjoy most? Which was most challenging? How do the roles depend on each other? Agree on role assignments for next session.",
+        "estimated_minutes": 3
+      }
+    ]
+  },
+  {
+    "title": "Engineering Notebook Basics",
+    "category": "methodology",
+    "grade_level": "4",
+    "duration_minutes": 30,
+    "description": "Learn how to set up and use an engineering notebook to document your robot design journey.",
+    "learning_objectives": [
+      "Create a properly formatted notebook title page",
+      "Learn the STEM notebook documentation format",
+      "Practice technical drawing with labeled diagrams",
+      "Write clear descriptions of design decisions"
+    ],
+    "materials_needed": [
+      "Engineering notebook (bound, not spiral)",
+      "Pencils and colored pencils",
+      "Ruler",
+      "Sample notebook pages"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create Your Title Page",
+        "content": "On page 1, write: Team name and number, team members' names, season/competition, date started. Add a team logo or robot sketch.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Learn the Entry Format",
+        "content": "Each entry should have: Date, Goal/Objective, Procedure (what you did), Observations (what happened), Conclusion (what you learned), Signature.",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 3,
+        "title": "Practice Technical Drawing",
+        "content": "Draw your robot or a simple mechanism from today. Use a ruler for straight lines. Add labels with arrows pointing to important parts. Include measurements.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Write Your First Entry",
+        "content": "Document today's activity using the entry format. Describe what you built, programmed, or learned. Sign and date it.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Build a Simple Claw",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 50,
+    "description": "Design and build a basic claw mechanism to pick up game elements. Learn about mechanical advantage.",
+    "learning_objectives": [
+      "Design a functional claw using VEX IQ parts",
+      "Test the claw with different objects",
+      "Understand basic lever mechanics",
+      "Iterate to improve grip strength"
+    ],
+    "materials_needed": [
+      "VEX IQ structural parts",
+      "Smart Motor",
+      "Rubber bands or springs",
+      "Various objects to grab (cubes, balls)"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Plan Your Design",
+        "content": "Sketch a simple claw design on paper. It should have: two 'fingers' that open and close, a motor to control it, and a way to attach to the robot. Think about how wide it needs to open.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Build the Claw Frame",
+        "content": "Build a base structure to mount the claw. Create two 'fingers' using beams that can pivot. Use pins as pivot points.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Add the Motor Mechanism",
+        "content": "Connect the Smart Motor to control the claw opening and closing. Use gears or direct connection. Test that both fingers move together.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Test and Improve",
+        "content": "Try picking up different objects: cubes, balls, light items, heavy items. What works well? What doesn't? Add rubber bands for better grip if needed.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Introduction to Gears",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 40,
+    "description": "Explore how gears work by building simple gear trains and discovering gear ratios.",
+    "learning_objectives": [
+      "Build 2-gear and 3-gear trains",
+      "Understand driver vs. driven gears",
+      "Observe speed and torque changes",
+      "Calculate simple gear ratios"
+    ],
+    "materials_needed": [
+      "Variety of VEX IQ gears (12-tooth, 36-tooth, 60-tooth)",
+      "Structural beams for mounting",
+      "Smart Motor",
+      "Ruler or measuring tape"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Build a 2-Gear Train",
+        "content": "Mount two gears next to each other so their teeth mesh. Connect a motor to the first gear. Turn it on and observe. Which direction does each gear spin?",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Test Different Sizes",
+        "content": "Try these combinations: 12-tooth to 36-tooth, 36-tooth to 12-tooth, 12-tooth to 60-tooth. What happens to the speed of the second gear?",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Understand Gear Ratios",
+        "content": "Count how many times the driver gear turns for one full turn of the driven gear. This is the gear ratio! A 12:36 ratio means 3 turns of the small gear = 1 turn of the large gear.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Document Your Findings",
+        "content": "In your notebook, draw each gear train you built. Label the gear sizes. Write whether it increased speed or torque (power).",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Drive in a Square",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 45,
+    "description": "Program your robot to drive in a perfect square path. Learn about loops and turning.",
+    "learning_objectives": [
+      "Create a program using sequential commands",
+      "Use turns to change robot direction",
+      "Measure and verify accurate movement",
+      "Understand the concept of loops (bonus)"
+    ],
+    "materials_needed": [
+      "Robot with Smart Motors and gyro sensor",
+      "VEXcode IQ software",
+      "Masking tape for marking path",
+      "Ruler"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Plan the Square",
+        "content": "A square has 4 equal sides and 4 right-angle (90°) turns. Decide how long each side should be (suggestion: 24 inches or 60 cm).",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "Program One Side and Turn",
+        "content": "Write: [Drive forward for X seconds] → [Turn right 90 degrees] → [Stop]. Test to see if your robot drives straight and turns exactly 90°. Adjust as needed.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Complete the Square",
+        "content": "Copy the forward and turn commands three more times to make all four sides. Download and test. Does it return to the start point?",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Improve with a Loop (Bonus)",
+        "content": "If you're comfortable, use a [Repeat 4 times] loop to make the code shorter and more efficient. Test again.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Sensor Exploration: Bumper Switch",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 35,
+    "description": "Learn how to use a bumper switch sensor to detect obstacles and make decisions in your program.",
+    "learning_objectives": [
+      "Mount and wire a bumper switch sensor",
+      "Write a program that responds to sensor input",
+      "Understand IF-THEN conditional logic",
+      "Test sensor reliability"
+    ],
+    "materials_needed": [
+      "Robot",
+      "Bumper Switch sensor",
+      "VEXcode IQ software",
+      "Obstacles (boxes, cones)"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mount the Sensor",
+        "content": "Attach the bumper switch to the front of your robot so it will be pressed when the robot hits something. Connect it to the Brain with a cable. Configure it in VEXcode.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Test the Sensor",
+        "content": "Use the Brain screen or VEXcode to check sensor readings. Press the bumper - does the value change? Make sure it works reliably.",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 3,
+        "title": "Write an IF-THEN Program",
+        "content": "Program: [Drive forward] → [IF bumper pressed, THEN turn right and stop] → [ELSE keep driving]. This makes the robot avoid walls!",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Test with Obstacles",
+        "content": "Place obstacles in front of the robot. Test your program. Does it detect and avoid them? Adjust the response if needed.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Match Day Simulation",
+    "category": "teamwork",
+    "grade_level": "4",
+    "duration_minutes": 50,
+    "description": "Practice a full competition match scenario with team roles, strategy, and scoring.",
+    "learning_objectives": [
+      "Experience all phases of a competition match",
+      "Practice driver skills under time pressure",
+      "Work with a partner team (Mix & Match style)",
+      "Reflect on performance and improve"
+    ],
+    "materials_needed": [
+      "Robot",
+      "Competition field or marked area",
+      "Game elements",
+      "Timer",
+      "Score sheet"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Team Assignments and Strategy",
+        "content": "Divide into two-team alliances (Mix & Match style). Each alliance discusses strategy: What will each robot do in autonomous? Who scores what in driver control?",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Autonomous Period (15 seconds)",
+        "content": "Run your autonomous program (or simple pre-programmed movement). Score points if possible. No touching the robot allowed!",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 3,
+        "title": "Driver Control Period (45 seconds)",
+        "content": "Drivers control their robots to score game elements. Coaches can give advice but not touch robots. Keep track of points scored.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Debrief and Improve",
+        "content": "Alliance meeting: What worked? What didn't? How can we improve for next match? Document 2-3 specific improvements to make.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Practice Match 2",
+        "content": "Run a second match with your improvements. Did your score improve? How did teamwork change?",
+        "estimated_minutes": 15
+      }
+    ]
+  }
+]
