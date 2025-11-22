@@ -1,0 +1,17 @@
+# Placeholder workflow to satisfy CodeQL analysis
+# This file exists because E2E test workflows were removed during API-first development
+# Real CI/CD workflows will be added when frontend features are implemented
+
+name: Placeholder
+
+# This workflow is disabled and will never run
+on:
+  workflow_dispatch:
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    if: false  # Never run
+    steps:
+      - name: Placeholder
+        run: echo "This is a placeholder workflow"
