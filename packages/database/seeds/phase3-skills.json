@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "name": "Advanced Lift Design",
+    "category": "building",
+    "grade_level": "5",
+    "description": "Design and build multi-stage, high-speed lift systems optimized for competitive scoring."
+  },
+  {
+    "name": "Sensor Fusion Programming",
+    "category": "programming",
+    "grade_level": "5",
+    "description": "Combine multiple sensor inputs (gyro, distance, color) to create robust autonomous navigation."
+  },
+  {
+    "name": "Competition Strategy Development",
+    "category": "teamwork",
+    "grade_level": "4",
+    "description": "Create comprehensive match strategies including autonomous, driver-control, and alliance coordination plans."
+  },
+  {
+    "name": "Data-Driven Optimization",
+    "category": "engineering",
+    "grade_level": "5",
+    "description": "Use systematic data collection and analysis to identify and implement robot performance improvements."
+  },
+  {
+    "name": "Defensive Robot Design",
+    "category": "building",
+    "grade_level": "4",
+    "description": "Design robots capable of effective defensive play while maintaining offensive capabilities within competition rules."
+  },
+  {
+    "name": "Engineering Documentation",
+    "category": "engineering",
+    "grade_level": "4",
+    "description": "Create competition-ready engineering notebooks that demonstrate complete design process and decision-making."
+  },
+  {
+    "name": "PID Control Implementation",
+    "category": "programming",
+    "grade_level": "5",
+    "description": "Implement and tune PID control algorithms for precise autonomous movement and positioning."
+  },
+  {
+    "name": "Alliance Coordination",
+    "category": "teamwork",
+    "grade_level": "4",
+    "description": "Develop and execute effective communication and coordination strategies with alliance partners."
+  },
+  {
+    "name": "Tournament Logistics",
+    "category": "teamwork",
+    "grade_level": "5",
+    "description": "Manage all aspects of tournament preparation including equipment, scheduling, repairs, and team coordination."
+  },
+  {
+    "name": "Performance Analysis",
+    "category": "engineering",
+    "grade_level": "4",
+    "description": "Conduct systematic post-competition analysis to identify improvement priorities and create action plans."
+  }
+]
