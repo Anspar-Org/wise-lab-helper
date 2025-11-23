@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "name": "Mechanism Master",
+    "category": "skill",
+    "description": "Successfully build and demonstrate three different advanced mechanisms (lift, intake, launcher)",
+    "criteria": "Complete lessons on four-bar lifts, chain drives, and intake systems. Build and demonstrate all three mechanisms working effectively.",
+    "points": 150,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=mechanism-master&icon=gear"
+  },
+  {
+    "name": "Gear Guru",
+    "category": "skill",
+    "description": "Master compound gear systems and gear ratio calculations",
+    "criteria": "Complete compound gearing lesson. Successfully calculate and build a gear train achieving 1:7 ratio. Demonstrate understanding through engineering notebook entry.",
+    "points": 125,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=gear-guru&icon=settings"
+  },
+  {
+    "name": "Autonomous Achiever",
+    "category": "skill",
+    "description": "Create a fully autonomous routine that completes multiple tasks using sensors",
+    "criteria": "Program an autonomous routine with at least 5 distinct actions using 2+ different sensors. Successfully run routine in competition or practice.",
+    "points": 150,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=autonomous-achiever&icon=cpu"
+  },
+  {
+    "name": "Strategy Specialist",
+    "category": "team",
+    "description": "Develop and document comprehensive match strategies",
+    "criteria": "Create detailed match strategy document including autonomous plans, driver priorities, and alliance coordination. Use strategy successfully in 3+ matches.",
+    "points": 125,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=strategy-specialist&icon=clipboard"
+  },
+  {
+    "name": "Engineering Documenter",
+    "category": "methodology",
+    "description": "Maintain exemplary engineering notebook with detailed design documentation",
+    "criteria": "Complete 10+ detailed engineering notebook entries including sketches, calculations, and reflection. Document full design process for one major mechanism.",
+    "points": 125,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=engineering-documenter&icon=book"
+  },
+  {
+    "name": "Testing & Iteration Pro",
+    "category": "methodology",
+    "description": "Complete multiple design-test-improve cycles with measured results",
+    "criteria": "Document 3+ complete iteration cycles on a single mechanism. Include measurements, test results, and specific improvements made each iteration.",
+    "points": 150,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=iteration-pro&icon=refresh"
+  },
+  {
+    "name": "Team Coordinator",
+    "category": "team",
+    "description": "Successfully coordinate team roles and responsibilities",
+    "criteria": "Lead team organization including role assignments, meeting schedules, and task delegation. Complete 5+ practice sessions with documented team coordination.",
+    "points": 125,
+    "icon_url": "https://api.dicebear.com/7.x/icons/svg?seed=team-coordinator&icon=users"
+  }
+]

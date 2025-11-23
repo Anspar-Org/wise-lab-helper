@@ -1,1 +1,683 @@
-[]
+[
+  {
+    "title": "Multi-Motor Drivetrain Design",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Build a 6-motor drivetrain with improved power and stability. Learn about weight distribution and motor placement.",
+    "learning_objectives": [
+      "Design and build a 6-wheel drive robot",
+      "Understand the benefits of multi-motor systems",
+      "Balance weight distribution across the chassis",
+      "Test and compare drivetrain performance"
+    ],
+    "materials_needed": [
+      "VEX IQ robot base",
+      "Smart Motors (4)",
+      "Structural beams (various lengths)",
+      "Wheels (6)",
+      "Battery",
+      "Weight scale"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Plan the Chassis Layout",
+        "content": "Sketch a top-down view of a robot with 6 wheels (3 on each side). Plan where motors will go - you need 4 motors total (2 per side). Consider: motor weight, battery placement, and future attachment space.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Build Extended Frame",
+        "content": "Create a longer, sturdier rectangular frame using cross-bracing. The frame should support 6 wheels and 4 motors while remaining rigid. Test by applying gentle pressure - minimal flexing is good!",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 3,
+        "title": "Mount Motors and Wheels",
+        "content": "Install 2 motors per side, positioned to distribute weight evenly. Connect motors on the same side together using gears or chain. Mount all 6 wheels, ensuring they all touch the ground equally.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Test and Balance",
+        "content": "Weigh each quadrant of the robot. Aim for even weight distribution (within 20%). Test drive in all directions. Document pushing power compared to your 4-wheel drive from Phase 1.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Compound Gear Systems",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 55,
+    "description": "Master advanced gear trains using compound gearing to achieve extreme speed or torque ratios.",
+    "learning_objectives": [
+      "Build a compound gear train with 3+ stages",
+      "Calculate overall gear ratio from compound gears",
+      "Choose appropriate ratios for specific tasks",
+      "Compare torque vs. speed trade-offs"
+    ],
+    "materials_needed": [
+      "VEX IQ gears (12T, 24T, 36T, 60T)",
+      "Structural mounting beams",
+      "Smart Motor",
+      "Stopwatch",
+      "Spring scale (optional)"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Review Single Gear Ratios",
+        "content": "Build a simple 12T to 60T gear train. Calculate ratio: 60÷12 = 5:1. This gives 5x torque but 1/5 speed. Test with motor at 50% - observe the output speed.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Build Compound Gear Train",
+        "content": "Create a 3-stage system: Motor → 12T/60T → 12T/60T → 12T/60T. Each stage multiplies the ratio. Total ratio: 5×5×5 = 125:1! This creates massive torque but very slow speed.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 3,
+        "title": "Test Power and Speed",
+        "content": "Compare your compound gear to a single gear train. Time 10 rotations of the final gear. Test lifting capacity - can it lift heavier objects? What's the trade-off?",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Design for a Purpose",
+        "content": "Challenge: Build a compound gear train for a fast intake (speed) OR a powerful lift (torque). Document your ratio calculations and explain your design choice.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Building a Four-Bar Lift",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Construct a four-bar linkage lift mechanism - one of the most effective VEX IQ designs for scoring high.",
+    "learning_objectives": [
+      "Understand four-bar linkage geometry",
+      "Build a functional four-bar lift",
+      "Optimize lift height and stability",
+      "Integrate lift with existing robot"
+    ],
+    "materials_needed": [
+      "VEX IQ structural beams (4 matched pairs)",
+      "Smart Motors (2)",
+      "Gears for torque",
+      "Rubber bands or springs",
+      "Objects to lift (test weights)"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Understand Four-Bar Mechanics",
+        "content": "A four-bar has 4 connected beams forming a parallelogram. As the base beams rotate, the top stays level - perfect for lifting! Study a diagram and identify: base, two arms, top platform.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Build the Linkage Structure",
+        "content": "Use 4 equal-length beams to create the parallelogram. Pin connections must pivot smoothly. Mount the base to your robot securely. Ensure the arms move together without binding.",
+        "estimated_minutes": 25
+      },
+      {
+        "step_number": 3,
+        "title": "Add Motor and Gearing",
+        "content": "Connect motors to both arms (linked with gears or chain so they move together). Add gear reduction for lifting power - suggest 3:1 or 5:1 ratio. Test lift motion - is it smooth?",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Test and Stabilize",
+        "content": "Lift progressively heavier objects. Does it wobble? Add cross-bracing or rubber bands for stability. Measure maximum lift height. Can it lift game elements to high scoring zones?",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Distance Sensor Navigation",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 45,
+    "description": "Use the distance sensor to detect and avoid obstacles, or to stop at precise locations.",
+    "learning_objectives": [
+      "Mount and configure distance sensor",
+      "Program using distance measurements",
+      "Create obstacle avoidance behavior",
+      "Use distance for precise positioning"
+    ],
+    "materials_needed": [
+      "Robot",
+      "Distance sensor",
+      "VEXcode IQ",
+      "Obstacles and markers",
+      "Measuring tape"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mount and Test Sensor",
+        "content": "Attach distance sensor to the front of the robot, facing forward. Configure in VEXcode. Test: place objects at 6, 12, 24 inches. Read sensor values - does distance match?",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Stop at a Wall",
+        "content": "Program: Drive forward UNTIL distance < 6 inches, THEN stop. This makes the robot stop exactly 6 inches from a wall. Test multiple times - how consistent is it?",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Obstacle Avoidance",
+        "content": "Advanced program: Drive forward. IF distance < 12 inches, THEN turn right 90°, drive 12 inches, turn left 90°, continue. This steers around obstacles!",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Precision Challenge",
+        "content": "Place scoring zones at specific distances (18 in, 36 in, 54 in). Program the robot to drive to zone 2 (36 in) and stop. Accuracy within 2 inches = success!",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Variables and Math in Programs",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 50,
+    "description": "Learn to use variables to store values and perform calculations in your robot programs.",
+    "learning_objectives": [
+      "Create and name variables",
+      "Store sensor readings in variables",
+      "Perform math operations (add, subtract, multiply)",
+      "Use variables to make flexible programs"
+    ],
+    "materials_needed": [
+      "Robot with sensors",
+      "VEXcode IQ software",
+      "Paper and pencil for planning"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Introduction to Variables",
+        "content": "A variable is a named storage box for a number. Example: 'speed' could store 50. Create a variable called 'driveSpeed' and set it to 60. Use it in a drive forward command.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Store Sensor Data",
+        "content": "Create variable 'distanceReading'. Set it to the distance sensor value. Display it on the Brain screen. Watch the number change as you move objects closer/farther.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Math with Variables",
+        "content": "Calculate drive time based on distance: Create 'targetDistance' (inches) and 'driveTime'. Set driveTime = targetDistance ÷ 10 (rough speed estimate). Drive forward for driveTime seconds.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Flexible Scoring Program",
+        "content": "Challenge: Create a program where changing one variable 'scoringMode' from 1 to 2 changes whether the robot goes for low goals or high goals. Use IF statements to check the mode.",
+        "estimated_minutes": 15
+      }
+    ]
+  },
+  {
+    "title": "Custom Functions for Reusable Code",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 50,
+    "description": "Organize your programs by creating custom functions - reusable blocks of code you can call multiple times.",
+    "learning_objectives": [
+      "Understand the purpose of functions",
+      "Create custom 'My Blocks' in VEXcode",
+      "Use parameters to make functions flexible",
+      "Organize complex programs with functions"
+    ],
+    "materials_needed": [
+      "Robot",
+      "VEXcode IQ",
+      "Competition field or practice area"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Why Use Functions?",
+        "content": "Functions avoid copying the same code. Example: if you turn right 90° five times in a program, create a 'TurnRight90' function instead of repeating blocks. It's cleaner and easier to fix!",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "Create Your First Function",
+        "content": "Make a custom block called 'ScoreOneBall'. Inside: drive forward 12 in → activate intake → drive backward 12 in. Now you can use 'ScoreOneBall' anywhere in your program!",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Add Parameters",
+        "content": "Improve 'ScoreOneBall' by adding a parameter 'distance'. Now it can drive different distances: ScoreOneBall(10), ScoreOneBall(20), etc. This makes functions super flexible!",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Build a Match Program",
+        "content": "Create functions for common tasks: 'DriveToZone', 'ActivateLift', 'ReturnToStart'. Build an autonomous program using only function calls - it should read like English!",
+        "estimated_minutes": 15
+      }
+    ]
+  },
+  {
+    "title": "Autonomous Routine Design",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Design, program, and test a complete 15-second autonomous routine to score points without driver input.",
+    "learning_objectives": [
+      "Plan an autonomous strategy on paper",
+      "Break strategy into precise steps",
+      "Program accurate movements and timing",
+      "Iterate to improve consistency and score"
+    ],
+    "materials_needed": [
+      "Competition robot",
+      "Full field setup with game elements",
+      "VEXcode IQ",
+      "Stopwatch",
+      "Measuring tape and chalk/tape"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Study the Field and Rules",
+        "content": "Analyze autonomous scoring opportunities: Which goals are closest? Which give most points? Can you score multiple times in 15 seconds? Sketch 2-3 possible routes on paper.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Plan Step-by-Step",
+        "content": "Choose your best route. Break it into precise steps with measurements: 'Drive forward 24 in → Turn right 90° → Drive 18 in → Activate intake for 2 sec → ...' Estimate total time.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Program and Test Each Step",
+        "content": "Code one step at a time. Test each addition: Does step 1 work? Add step 2, test both. Continue building up. Mark the floor to check accuracy. Adjust distances/times as needed.",
+        "estimated_minutes": 25
+      },
+      {
+        "step_number": 4,
+        "title": "Run Full Routine 5 Times",
+        "content": "Test the complete autonomous 5 times. Score each run. Calculate consistency: Did you score the same each time? What failed? Improve your most unreliable step.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Debugging Strategies for Complex Programs",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 45,
+    "description": "Master systematic debugging techniques to find and fix errors in complex robot programs.",
+    "learning_objectives": [
+      "Identify different types of program errors",
+      "Use print/display blocks to track values",
+      "Test programs in sections (unit testing)",
+      "Document bugs and fixes in notebook"
+    ],
+    "materials_needed": [
+      "Robot with a buggy program (intentional errors)",
+      "VEXcode IQ",
+      "Engineering notebook",
+      "Debugging checklist"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Types of Bugs",
+        "content": "Learn three bug types: SYNTAX (code won't download - typos/missing blocks), LOGIC (code runs but does wrong thing), HARDWARE (loose wires, dead battery). Identify which type you're facing.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Add Debug Messages",
+        "content": "Insert 'print to screen' blocks throughout your program: 'Starting autonomous', 'Distance = X', 'Lift activated'. Run the program and watch what displays. Where does it stop or go wrong?",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Test in Sections",
+        "content": "Comment out or delete the second half of your program. Does the first half work? Add back one function at a time, testing after each addition. This isolates exactly where the bug is!",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Document and Fix",
+        "content": "In your notebook: write what the bug was, what you tried, and what finally fixed it. Create a team 'Common Bugs' list. This saves time when you see the same error again!",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Match Strategy and Alliance Planning",
+    "category": "teamwork",
+    "grade_level": "4",
+    "duration_minutes": 55,
+    "description": "Learn to develop match strategy, communicate with alliance partners, and adapt during competition.",
+    "learning_objectives": [
+      "Analyze scoring opportunities and prioritize them",
+      "Create alliance strategy with partner team",
+      "Communicate role assignments clearly",
+      "Adapt strategy based on match observations"
+    ],
+    "materials_needed": [
+      "Two robots (alliance partners)",
+      "Full field setup",
+      "Strategy planning worksheet",
+      "Whiteboard or paper"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Analyze Robot Capabilities",
+        "content": "Each team shares: What can your robot do well? What mechanisms do you have? How fast/reliable is your scoring? What's your autonomous plan? Be honest about strengths and weaknesses.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Develop Alliance Strategy",
+        "content": "Together, decide: Who scores which goals? Who focuses on defense? Autonomous: will you interfere with each other? Driver: who goes left/right? Create a simple 1-page plan both teams understand.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Practice and Communicate",
+        "content": "Run a practice match following your strategy. Drivers should call out actions: 'Going for high goal!' 'I'm in the way, backing up!' 'Nice shot!' Time your communication.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Adapt and Improve",
+        "content": "After the match: What worked? What caused problems? If opponents block your main strategy, what's plan B? Run match 2 with adjustments. Did you score more?",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Time Management in Matches",
+    "category": "teamwork",
+    "grade_level": "4",
+    "duration_minutes": 40,
+    "description": "Practice using the 60-second match time efficiently with specific time-based strategies.",
+    "learning_objectives": [
+      "Understand time allocation for autonomous vs driver",
+      "Prioritize high-value actions early in match",
+      "Recognize time remaining and adjust strategy",
+      "Practice endgame timing and positioning"
+    ],
+    "materials_needed": [
+      "Robot",
+      "Field setup",
+      "Countdown timer (visible)",
+      "Score tracking sheet"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Break Down Match Time",
+        "content": "A match is 60 seconds: 15 sec autonomous (no driving), 45 sec driver control. In 45 seconds, you might score 5-8 times. Final 10 seconds: get to endgame position! Plan timing for each action.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "High Value First",
+        "content": "Strategy: Score your hardest/highest-point tasks FIRST when you're fresh and have time. Easy points can come later. Example: Try high goal first 20 sec, then low goals if time runs out.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Practice Time Awareness",
+        "content": "Run matches with a coach calling time every 10 seconds: '50!', '40!', '30!', '20!', '10 - endgame!'. Drivers learn to pace themselves and not panic. Practice 5 times.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Endgame Positioning",
+        "content": "With 10 seconds left, can you reach the endgame zone? Time your drive from anywhere on the field. Create mental checkpoints: 'If I'm here at 15 sec, I can make it.' Practice.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Advanced Engineering Notebook",
+    "category": "methodology",
+    "grade_level": "5",
+    "duration_minutes": 50,
+    "description": "Elevate your engineering notebook with detailed design analysis, testing data, and decision-making documentation.",
+    "learning_objectives": [
+      "Document design iterations with before/after comparisons",
+      "Record quantitative test data in tables",
+      "Explain design decisions with engineering reasoning",
+      "Create professional technical drawings"
+    ],
+    "materials_needed": [
+      "Engineering notebook",
+      "Ruler and compass",
+      "Colored pencils",
+      "Test data from recent robot modifications"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Document Design Iteration",
+        "content": "Choose a robot modification you made. Create an entry showing: Original design (sketch), Problem identified, Proposed solution (sketch), Why you chose this solution (explain trade-offs), Result.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 2,
+        "title": "Record Test Data",
+        "content": "Create a table documenting tests: columns for Test #, Variable Changed, Measurement, Result. Example: gear ratios vs lift height, or motor speed vs battery life. Minimum 5 tests with numbers.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Technical Drawing Skills",
+        "content": "Draw your robot or mechanism with: multiple views (top, side, front), accurate measurements with dimension lines, callouts for important parts, material notes (what gear sizes, etc.).",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Decision Analysis",
+        "content": "Document a major decision: 'Should we use a claw or intake?' Make a comparison table: pros, cons, estimated time to build, expected effectiveness. Show your reasoning process.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Chain and Sprocket Systems",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 50,
+    "description": "Build and apply chain-drive systems for connecting motors across distance or around corners.",
+    "learning_objectives": [
+      "Assemble a chain and sprocket connection",
+      "Understand when to use chain vs gears",
+      "Properly tension chain for reliability",
+      "Design chain-driven mechanisms"
+    ],
+    "materials_needed": [
+      "VEX IQ chain links",
+      "Sprockets (various sizes)",
+      "Structural beams",
+      "Smart Motor",
+      "Tensioning standoffs"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Chain vs Gears Comparison",
+        "content": "Gears: connect close parts, precise, can change direction. Chain: connect far parts, flexible routing, consistent direction. Both transfer power and can change speed/torque ratios!",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Build Chain Drive",
+        "content": "Mount two sprockets 12 inches apart on a beam. Connect with chain - you may need to add/remove links for proper length. Spin the motor - does the second sprocket turn smoothly?",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Adjust Chain Tension",
+        "content": "Too loose: chain skips or falls off. Too tight: extra friction and wear. Adjust tension so chain has slight sag (about 1/4 inch) when not running. Add tensioner if needed.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Design Application",
+        "content": "Challenge: Design a system where a motor on the back of the robot drives a mechanism on the front using chain. Why is chain better than gears here? Build and test it.",
+        "estimated_minutes": 15
+      }
+    ]
+  },
+  {
+    "title": "Intake Mechanism Design",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Build a roller-based intake system to efficiently collect and control game elements.",
+    "learning_objectives": [
+      "Design intake geometry for game elements",
+      "Build powered roller intake with rubber bands",
+      "Optimize intake speed and power",
+      "Test intake reliability"
+    ],
+    "materials_needed": [
+      "VEX IQ structural parts",
+      "Smart Motor (1-2)",
+      "Rubber bands or flex wheels",
+      "Game elements (balls or cubes)",
+      "Standoffs and axles"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Understand Intake Principles",
+        "content": "Intakes use spinning rollers with grippy surfaces to pull objects in. Key factors: roller speed (too fast = eject, too slow = no grip), spacing (match object size), angle (funnel objects toward center).",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Build Roller Assembly",
+        "content": "Create two parallel rollers using axles wrapped with rubber bands (or flex wheels). Space them slightly wider than your game element. Connect motor to spin both rollers inward (top toward robot).",
+        "estimated_minutes": 25
+      },
+      {
+        "step_number": 3,
+        "title": "Test and Optimize Speed",
+        "content": "Test at 25%, 50%, 75%, 100% motor speed. Place game element near intake - does it grab? Time how fast it collects 5 objects. Find optimal speed for quick but controlled intake.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Add Funnel Guides",
+        "content": "Add angled guide plates on sides to direct objects toward rollers (like a funnel). Test: can you drive past an object and it automatically enters? Adjust angles if needed.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Gyro Sensor for Accurate Turns",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 45,
+    "description": "Use the gyro sensor to make precise, repeatable turns in autonomous programs.",
+    "learning_objectives": [
+      "Understand how gyro sensors measure rotation",
+      "Calibrate gyro sensor properly",
+      "Program turns using gyro feedback",
+      "Compare gyro turns to time-based turns"
+    ],
+    "materials_needed": [
+      "Robot with gyro sensor installed",
+      "VEXcode IQ",
+      "Protractor or angle markings on floor",
+      "Measuring tape"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gyro Sensor Basics",
+        "content": "The gyro measures rotation in degrees. 90° = quarter turn, 180° = half turn, 360° = full spin. IMPORTANT: Calibrate before each run (robot must be perfectly still for 2 seconds).",
+        "estimated_minutes": 5
+      },
+      {
+        "step_number": 2,
+        "title": "Program Precise Turns",
+        "content": "Code: Calibrate gyro → Turn right UNTIL gyro > 90 degrees → Stop. Test: does robot turn exactly 90°? Mark floor with tape. Try 45°, 90°, 180°. Measure accuracy with protractor.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 3,
+        "title": "Compare to Time-Based",
+        "content": "Create two programs: one using 'turn for 1.2 seconds', another using 'turn until gyro = 90'. Run each 10 times. Which is more consistent? Measure the variation in degrees.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Build Complex Path",
+        "content": "Program a path with multiple precise turns: forward 24 in → turn 60° right → forward 18 in → turn 120° left → forward 24 in. Gyro makes complex paths much more accurate!",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Competition Robot Revision Cycle",
+    "category": "methodology",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Practice the full engineering design cycle: identify problem, design solution, build, test, and iterate.",
+    "learning_objectives": [
+      "Identify specific performance problems with data",
+      "Brainstorm multiple solution approaches",
+      "Test modifications systematically",
+      "Document the complete revision cycle"
+    ],
+    "materials_needed": [
+      "Current competition robot",
+      "Engineering notebook",
+      "Stopwatch and measuring tools",
+      "Additional VEX IQ parts for modifications"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Identify Problem with Data",
+        "content": "Run 3 test matches. Record specific problems: 'Claw drops balls 40% of time', 'Autonomous misses goal by 6 inches', 'Takes 8 sec to score (too slow)'. Choose the biggest problem to solve.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 2,
+        "title": "Brainstorm Solutions",
+        "content": "Team brainstorm: list 3+ different ways to solve the problem. For each: sketch quick design, estimate build time, predict effectiveness (1-10). Vote on best option. Document all ideas in notebook.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Build and Test",
+        "content": "Implement the chosen solution. Test the same way as before: run 3 matches, collect data. Did the problem improve? Did you create new problems? Be honest in your assessment.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 4,
+        "title": "Iterate or Finalize",
+        "content": "If solution didn't work: try your second-choice idea. If it worked: can you improve it further? Document final results: before/after comparison with numbers. Sign and date the entry.",
+        "estimated_minutes": 10
+      }
+    ]
+  }
+]

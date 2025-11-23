@@ -1,1 +1,550 @@
-[]
+[
+  {
+    "title": "Advanced Linear Lift Systems",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Design and build high-speed, high-capacity linear lift systems for competition scoring.",
+    "learning_objectives": [
+      "Design multi-stage lift systems with compound motion",
+      "Calculate torque and speed requirements for competitive scoring",
+      "Implement limit switches and position control",
+      "Optimize lift cycle times for maximum efficiency"
+    ],
+    "materials_needed": [
+      "VEX IQ Super Kit",
+      "Additional motors (4-6 total)",
+      "Linear slide rails",
+      "Standoffs and structural components",
+      "Limit switches or bumper sensors",
+      "Competition field setup"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Analyze Scoring Requirements",
+        "content": "Study the competition game manual and field. Identify the maximum height needed, scoring zone dimensions, and cycle time goals. Calculate how many points per minute your lift needs to achieve to be competitive.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Design Multi-Stage System",
+        "content": "Sketch a multi-stage lift design. Consider using cascading stages to reach high positions while keeping the robot compact. Plan motor placement, gear ratios, and load distribution.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Build the Base Stage",
+        "content": "Construct the fixed base of your lift with strong mounting to the chassis. Ensure the base is rigid and can support the full weight of upper stages plus game objects.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Add Moving Stages",
+        "content": "Build and install the moving stages of the lift. Use linear slides or four-bar linkages. Add proper support and guide rails to prevent wobbling or binding during motion.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 5,
+        "title": "Install Sensors and Limits",
+        "content": "Add limit switches at the top and bottom positions. Program sensor-based position control so the lift knows when it has reached target heights and won't exceed mechanical limits.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 6,
+        "title": "Test and Optimize Cycle Time",
+        "content": "Run timed cycles: pick up object, lift to scoring height, score, return to start. Measure cycle time and adjust motor speeds, gear ratios, or motion profiles to minimize time while maintaining control.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Sensor Fusion for Autonomous Navigation",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Combine multiple sensor inputs to create robust autonomous navigation routines.",
+    "learning_objectives": [
+      "Understand sensor fusion concepts and benefits",
+      "Use gyro, distance, and color sensors together",
+      "Implement error correction using multiple data sources",
+      "Create reliable autonomous routines for competition"
+    ],
+    "materials_needed": [
+      "VEX IQ robot with multiple sensors",
+      "Gyro sensor",
+      "Distance sensor",
+      "Color/optical sensor",
+      "Competition field or practice area",
+      "Laptop with VEXcode IQ"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Learn Sensor Fusion Principles",
+        "content": "Understand why using multiple sensors together is more reliable than using just one. Discuss how sensors can verify each other's readings and provide backup if one fails or gives incorrect data.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Implement Gyro-Corrected Driving",
+        "content": "Program straight-line driving that uses the gyro sensor to detect and correct drift. Compare robot heading to target heading and adjust motor speeds to stay on course.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Add Distance Verification",
+        "content": "Use distance sensors to verify position alongside encoder-based movement. If the robot expects to be at a certain distance from a wall but the sensor reads differently, use sensor data to correct position.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Implement Color Detection Waypoints",
+        "content": "Use colored tape or field elements as navigation waypoints. Program the robot to use color sensors to confirm it has reached key positions during autonomous routines.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Create Multi-Sensor Decision Logic",
+        "content": "Write programs that make decisions based on multiple sensor inputs. For example: 'If gyro shows correct heading AND distance sensor detects wall within range, proceed to next step.'",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 6,
+        "title": "Test Autonomous Reliability",
+        "content": "Run your autonomous routine 10 times in a row. Track success rate and identify any failures. Adjust sensor thresholds and add additional checks where failures occur.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Competition Match Strategy Development",
+    "category": "teamwork",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Create comprehensive match strategies including autonomous, driver-control, and alliance coordination.",
+    "learning_objectives": [
+      "Analyze competition game for optimal strategies",
+      "Develop autonomous routines for maximum points",
+      "Create driver-control priorities and time management",
+      "Plan alliance coordination and communication"
+    ],
+    "materials_needed": [
+      "Competition game manual",
+      "Field diagram or actual field",
+      "Whiteboard or large paper for strategy diagrams",
+      "Team notebook",
+      "Stopwatch for timing practice runs"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Game Analysis and Point Optimization",
+        "content": "Study the game manual thoroughly. List all scoring opportunities and their point values. Calculate points per second for each task. Identify the highest-value activities your robot can accomplish.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 2,
+        "title": "Design Autonomous Strategy",
+        "content": "Plan a 30-second autonomous routine that maximizes points. Focus on consistent, reliable actions rather than risky high-point tasks. Sketch the robot's path on a field diagram with timing estimates.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Create Driver-Control Priorities",
+        "content": "List driver-control tasks in priority order. Consider which tasks score most points, which are easiest to execute under pressure, and which can be done in the final seconds of a match.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Plan Alliance Coordination",
+        "content": "Develop strategies for working with alliance partners. Decide who focuses on which scoring tasks, how to communicate during matches, and what to do if plans change mid-match.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Document and Practice Strategy",
+        "content": "Write complete strategy documentation in your engineering notebook. Include diagrams, timing, priorities, and backup plans. Practice executing the strategy with timed runs.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Robot Optimization Through Data Analysis",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Use systematic data collection and analysis to optimize robot performance.",
+    "learning_objectives": [
+      "Design meaningful performance metrics and tests",
+      "Collect quantitative data on robot performance",
+      "Analyze data to identify improvement opportunities",
+      "Make evidence-based design decisions"
+    ],
+    "materials_needed": [
+      "Competition robot",
+      "Stopwatch or timer",
+      "Measurement tools (ruler, scale)",
+      "Data collection sheets or spreadsheet",
+      "Engineering notebook",
+      "Test field or practice area"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Define Performance Metrics",
+        "content": "Identify what to measure: cycle times, success rates, top speed, acceleration, lift height, scoring accuracy, battery efficiency. Choose 3-5 key metrics that matter most for your robot's success.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Create Test Protocols",
+        "content": "Design repeatable tests for each metric. For example: 'Time to drive from start to scoring zone' or 'Percentage of successful object pickups in 10 attempts.' Write clear procedures so anyone can run the tests.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Baseline Data Collection",
+        "content": "Run your test protocols and record current performance. Do multiple trials to get average values and identify variability. This baseline data shows where you're starting from.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Identify Bottlenecks",
+        "content": "Analyze your data to find the biggest limitations. Is the robot slow? Does it fail at specific tasks? Where is the most time or points being lost? Focus improvement efforts on the largest problems first.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Test Design Changes",
+        "content": "Make one change at a time (gear ratio, mechanism design, program timing, etc.). Re-run tests and compare to baseline data. Only keep changes that show measurable improvement.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 6,
+        "title": "Document Optimization Results",
+        "content": "Record all data, changes, and results in your engineering notebook. Create graphs showing performance improvements over time. This documentation demonstrates your engineering process.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Defensive Robot Design Principles",
+    "category": "technical",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Design robots that prevent opponents from scoring while maintaining offensive capabilities.",
+    "learning_objectives": [
+      "Understand defensive strategies in robotics competition",
+      "Design mechanisms that can block or control opponents",
+      "Balance defensive and offensive capabilities",
+      "Learn legal vs. illegal defensive tactics"
+    ],
+    "materials_needed": [
+      "VEX IQ Super Kit",
+      "Competition game manual (for rules review)",
+      "Practice field with game elements",
+      "Another robot to practice against",
+      "Whiteboard for strategy planning"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Study Defensive Rules",
+        "content": "Read the game manual's rules on defensive play. Identify what defensive actions are allowed and what is illegal (like pinning, trapping, or damaging opponents). Understand penalty consequences.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Analyze Defensive Opportunities",
+        "content": "Study the game field to find where defensive play is most effective. Identify chokepoints, high-value scoring zones, or game elements that opponents must access. Plan how to control these areas.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Design Wide Defensive Stance",
+        "content": "Build a robot with a wide base or extending barriers that can block access to key areas. Ensure the design stays within size limits but maximizes coverage when needed.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Add Offensive-Defensive Balance",
+        "content": "Ensure your robot can still score points while playing defense. Design mechanisms that serve both purposes - like an intake that can also push game elements away from opponents.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 5,
+        "title": "Practice Defensive Driving",
+        "content": "Run drills where one driver plays offense and another plays defense. Practice positioning to block access without committing illegal plays. Learn when to switch between defensive and offensive modes.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Engineering Notebook for Competition Judging",
+    "category": "methodology",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Create a competition-ready engineering notebook that demonstrates the complete design process.",
+    "learning_objectives": [
+      "Understand engineering notebook judging criteria",
+      "Document design process with sketches and explanations",
+      "Include data, testing results, and reflections",
+      "Organize notebook for effective communication"
+    ],
+    "materials_needed": [
+      "Engineering notebook or binder",
+      "Pencils, pens, rulers",
+      "Camera or phone for photos",
+      "Printed photos of robot builds",
+      "Competition rubric for notebooks"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Review Judging Criteria",
+        "content": "Read the competition's engineering notebook rubric. Identify what judges look for: design process, testing, problem-solving, teamwork, documentation quality. Understand how notebooks are scored.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Organize Notebook Structure",
+        "content": "Create sections: Team Info, Design Process, Build Documentation, Programming, Testing & Data, Competition Logs, Reflections. Add a table of contents. Make it easy for judges to navigate.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Document Design Decisions",
+        "content": "For each major component of your robot, write entries explaining: What problem were you solving? What designs did you consider? Why did you choose this solution? Include sketches showing different options.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Add Testing and Data",
+        "content": "Include test results, measurements, and data tables. Show how testing influenced design changes. Add photos of different iterations with explanations of what improved and what didn't work.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 5,
+        "title": "Write Reflections and Learning",
+        "content": "After each major milestone, write a reflection: What did you learn? What would you do differently? What are you proud of? Judges want to see how your team grows and learns from challenges.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "PID Control Implementation for Precision",
+    "category": "technical",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Implement PID (Proportional-Integral-Derivative) control for precise autonomous movement.",
+    "learning_objectives": [
+      "Understand PID control theory and components",
+      "Implement proportional control for basic correction",
+      "Add integral and derivative components",
+      "Tune PID constants for optimal performance"
+    ],
+    "materials_needed": [
+      "VEX IQ robot with encoders and gyro",
+      "Laptop with VEXcode IQ",
+      "Test area with marked targets",
+      "Notebook for recording PID values",
+      "Stopwatch"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Learn PID Theory",
+        "content": "Understand the three components: Proportional (correction based on error size), Integral (correction for accumulated error), Derivative (correction based on rate of change). Learn how they work together for smooth, accurate control.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Implement Proportional Control",
+        "content": "Write a program that calculates error (target - current position) and applies motor power proportional to that error. Test with different kP values to see how it affects response speed and stability.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Add Integral Component",
+        "content": "Track accumulated error over time and add a correction proportional to this sum. This helps eliminate steady-state error where the robot gets close but not quite to the target. Tune kI carefully to avoid oscillation.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Implement Derivative Component",
+        "content": "Calculate the rate of change of error. Add correction based on this rate to dampen oscillations and reduce overshoot. This helps the robot slow down smoothly as it approaches the target.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Tune PID Constants",
+        "content": "Systematically adjust kP, kI, and kD values. Start with kP only, then add kD to reduce overshoot, finally add kI if needed. Test extensively and record which values give the best performance.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Alliance Strategy and Communication",
+    "category": "teamwork",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Develop effective communication and coordination strategies for alliance matches.",
+    "learning_objectives": [
+      "Create pre-match communication protocols",
+      "Develop in-match communication signals",
+      "Plan complementary alliance strategies",
+      "Practice effective team coordination"
+    ],
+    "materials_needed": [
+      "Two or more robots (your team and practice partners)",
+      "Competition field",
+      "Communication planning worksheets",
+      "Stopwatch",
+      "Notebook for strategy documentation"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Design Pre-Match Protocol",
+        "content": "Create a standard set of questions to ask alliance partners before each match: What can your robot do? What's your autonomous routine? Which scoring tasks should each robot prioritize? Make a checklist to ensure nothing is forgotten.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Develop Hand Signals",
+        "content": "Create simple hand signals for common in-match communication: 'I'm going for that goal,' 'You take that side,' 'Switch roles,' 'Emergency - need help.' Practice these signals so they become automatic.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Plan Complementary Roles",
+        "content": "Design strategies where alliance partners have different roles that work together: one focuses on offense while the other plays defense, or each takes responsibility for different areas of the field.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Practice Alliance Matches",
+        "content": "Run practice matches with another team acting as your alliance partner. Execute your communication protocol and strategies. Time how long communication takes and practice making it faster and clearer.",
+        "estimated_minutes": 20
+      },
+      {
+        "step_number": 5,
+        "title": "Debrief and Improve",
+        "content": "After practice matches, discuss what worked and what didn't with your practice alliance. Identify miscommunications or strategy conflicts. Revise your protocols based on real experience.",
+        "estimated_minutes": 10
+      }
+    ]
+  },
+  {
+    "title": "Championship Tournament Preparation",
+    "category": "methodology",
+    "grade_level": "5",
+    "duration_minutes": 60,
+    "description": "Comprehensive preparation for championship-level tournaments including logistics, strategy, and team readiness.",
+    "learning_objectives": [
+      "Create tournament preparation checklists",
+      "Plan for equipment backup and repairs",
+      "Develop match schedule management strategies",
+      "Prepare for judging presentations and interviews"
+    ],
+    "materials_needed": [
+      "Tournament information and schedule",
+      "Complete spare parts inventory",
+      "Tools and repair supplies",
+      "Engineering notebook",
+      "Team presentation materials",
+      "Checklist templates"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Create Equipment Checklists",
+        "content": "List everything needed for competition: robot, batteries (multiple, fully charged), charger, spare parts, tools, engineering notebook, team banner, etc. Assign team members to verify each category is packed.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Prepare Spare Parts Kit",
+        "content": "Identify your robot's most likely failure points. Pack spare motors, gears, axles, wheels, and structural pieces. Organize them so you can find parts quickly during pit time between matches.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 3,
+        "title": "Plan Match Day Schedule",
+        "content": "Map out your tournament day: match times, judging interview time, inspection deadline, lunch breaks, pit maintenance windows. Build in buffer time for unexpected delays or repairs.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 4,
+        "title": "Prepare Judging Presentation",
+        "content": "Plan what you'll say to judges about your robot, design process, and teamwork. Practice presenting your engineering notebook. Prepare answers to common questions. Assign speaking roles to different team members.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 5,
+        "title": "Practice Quick Repairs",
+        "content": "Time how long it takes to replace common parts: motor, wheel, gear. Practice doing repairs under pressure. You may have only 5-10 minutes between matches to fix problems.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 6,
+        "title": "Team Readiness Check",
+        "content": "Final team meeting before the tournament. Review roles, strategies, backup plans, and tournament rules. Make sure everyone knows the schedule and their responsibilities. Build team confidence and excitement.",
+        "estimated_minutes": 5
+      }
+    ]
+  },
+  {
+    "title": "Post-Competition Analysis and Improvement",
+    "category": "methodology",
+    "grade_level": "4",
+    "duration_minutes": 60,
+    "description": "Systematic analysis of competition performance to identify improvements for future events.",
+    "learning_objectives": [
+      "Collect and organize competition performance data",
+      "Analyze strengths and weaknesses objectively",
+      "Identify specific improvement priorities",
+      "Plan next steps based on competition experience"
+    ],
+    "materials_needed": [
+      "Competition match results and scores",
+      "Video recordings of matches (if available)",
+      "Engineering notebook",
+      "Whiteboard or large paper",
+      "Team feedback forms"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Gather Performance Data",
+        "content": "Compile all match scores, rankings, and statistics. Note which scoring tasks your robot successfully completed and which it attempted but failed. Count how many times each mechanism worked vs. failed.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 2,
+        "title": "Watch Match Videos",
+        "content": "If videos are available, watch your matches together as a team. Look for patterns: timing issues, mechanical failures, driver mistakes, successful strategies. Take notes on specific moments to improve.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 3,
+        "title": "Team Debrief Discussion",
+        "content": "Hold a team meeting where everyone shares observations. What went well? What was frustrating? What surprised you? Record all feedback without judgment - every perspective is valuable.",
+        "estimated_minutes": 15
+      },
+      {
+        "step_number": 4,
+        "title": "Identify Top 3 Improvements",
+        "content": "From all the feedback and data, identify the three most impactful improvements to make. Focus on changes that will increase scores the most or prevent major failures. Write these as specific, measurable goals.",
+        "estimated_minutes": 10
+      },
+      {
+        "step_number": 5,
+        "title": "Create Action Plan",
+        "content": "For each improvement priority, create a detailed plan: what needs to change (design, program, strategy, practice), who is responsible, what resources are needed, and target completion date.",
+        "estimated_minutes": 10
+      }
+    ]
+  }
+]
