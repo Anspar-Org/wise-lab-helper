@@ -1,7 +1,7 @@
 [
   {
     "name": "Competition Ready",
-    "category": "achievement",
+    "category": "engagement",
     "description": "Successfully prepare for and compete in an official VEX IQ tournament",
     "criteria": "Complete tournament preparation checklist. Compete in official VEX IQ tournament. Pass robot inspection. Complete all qualification matches. Present to judges with engineering notebook.",
     "points": 250,
@@ -9,7 +9,7 @@
   },
   {
     "name": "Championship Performance",
-    "category": "achievement",
+    "category": "engagement",
     "description": "Achieve top-tier performance metrics in competition",
     "criteria": "Win at least 50% of qualification matches OR rank in top 25% of teams OR earn tournament award (Design, Judges, etc.) OR qualify for championship event.",
     "points": 300,
@@ -17,7 +17,7 @@
   },
   {
     "name": "Engineering Excellence",
-    "category": "engineering",
+    "category": "methodology",
     "description": "Demonstrate exemplary engineering process and documentation throughout the season",
     "criteria": "Maintain detailed engineering notebook with 20+ entries. Document complete design process with data and testing. Include iteration cycles with measured improvements. Create competition-ready presentation materials.",
     "points": 200,
