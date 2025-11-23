@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "name": "Multi-Motor Integration",
+    "category": "building",
+    "grade_level": "4",
+    "description": "Ability to design and build systems using multiple motors working together for increased power and control."
+  },
+  {
+    "name": "Compound Gearing",
+    "category": "building",
+    "grade_level": "4",
+    "description": "Understanding and implementing compound gear systems to achieve specific speed and torque ratios."
+  },
+  {
+    "name": "Four-Bar Linkage Design",
+    "category": "building",
+    "grade_level": "4",
+    "description": "Designing and building four-bar linkage mechanisms for lifts and manipulators with parallel motion."
+  },
+  {
+    "name": "Sensor Integration",
+    "category": "programming",
+    "grade_level": "4",
+    "description": "Using distance, color, and bumper sensors in programs to create responsive autonomous behaviors."
+  },
+  {
+    "name": "Autonomous Routine Planning",
+    "category": "programming",
+    "grade_level": "4",
+    "description": "Creating multi-step autonomous programs that accomplish complex tasks with sensor feedback."
+  },
+  {
+    "name": "PID Control Basics",
+    "category": "programming",
+    "grade_level": "5",
+    "description": "Understanding proportional control to improve motor positioning and movement accuracy."
+  },
+  {
+    "name": "Advanced Drivetrain Control",
+    "category": "driving",
+    "grade_level": "4",
+    "description": "Mastering precise control of multi-motor drivetrains including turning radius and acceleration control."
+  },
+  {
+    "name": "Field-Oriented Strategy",
+    "category": "driving",
+    "grade_level": "4",
+    "description": "Developing efficient movement patterns and strategies for specific competition field layouts."
+  },
+  {
+    "name": "Mechanism Operation Timing",
+    "category": "driving",
+    "grade_level": "4",
+    "description": "Coordinating multiple mechanism operations while driving for maximum efficiency."
+  },
+  {
+    "name": "Team Role Specialization",
+    "category": "teamwork",
+    "grade_level": "4",
+    "description": "Identifying team member strengths and assigning specialized roles (builder, programmer, driver, scout)."
+  },
+  {
+    "name": "Match Strategy Development",
+    "category": "teamwork",
+    "grade_level": "4",
+    "description": "Creating team strategies for competitions including alliance coordination and scoring priorities."
+  },
+  {
+    "name": "Engineering Notebook Organization",
+    "category": "engineering",
+    "grade_level": "4",
+    "description": "Maintaining detailed, organized engineering notebook entries documenting design process and decisions."
+  },
+  {
+    "name": "Iterative Design Process",
+    "category": "engineering",
+    "grade_level": "4",
+    "description": "Following systematic design-build-test-improve cycles to optimize robot performance."
+  },
+  {
+    "name": "Constraint Analysis",
+    "category": "engineering",
+    "grade_level": "5",
+    "description": "Identifying and working within game rules, size limits, and mechanical constraints during design."
+  },
+  {
+    "name": "Performance Measurement",
+    "category": "engineering",
+    "grade_level": "4",
+    "description": "Collecting and analyzing data on robot performance to guide design improvements."
+  }
+]
