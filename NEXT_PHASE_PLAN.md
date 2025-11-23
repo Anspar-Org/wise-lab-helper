@@ -23,22 +23,17 @@ Building a learning-first platform for elementary engineering education (K-5) wi
 
 ## 📋 Current Work In Progress
 
-### 1. Address Security Vulnerabilities
+### 1. OpenAPI/Swagger Documentation (Active Priority)
 
-**Current State:**
-- 4 HIGH vulnerabilities on default branch (need investigation)
-- 8 MODERATE vulnerabilities (dev-only esbuild issues)
+**Goal:** Create comprehensive OpenAPI/Swagger documentation for all existing API endpoints.
 
-**Action Items:**
-- [ ] Audit Dependabot alerts: https://github.com/Anspar-Org/wise-lab-helper/security/dependabot
-- [ ] Update or replace vulnerable dependencies
-- [ ] Document any accepted risks (dev-only dependencies)
-- [ ] Verify npm audit shows clean for production dependencies
+**Status:** Ready to begin - all dependencies installed, API tests passing
 
-**Acceptance Criteria:**
-- Zero HIGH/CRITICAL vulnerabilities in production dependencies
-- All dev-only vulnerabilities documented with justification
-- npm audit report clean or acceptable
+**Next Steps:**
+1. Install and configure swagger-jsdoc + swagger-ui-express
+2. Set up Swagger documentation route at `/api/docs`
+3. Document existing endpoints with JSDoc comments
+4. Test interactive API documentation UI
 
 ---
 
