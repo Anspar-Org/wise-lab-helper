@@ -282,7 +282,7 @@
   },
   {
     "title": "Engineering Notebook for Competition Judging",
-    "category": "engineering",
+    "category": "methodology",
     "grade_level": "4",
     "duration_minutes": 60,
     "description": "Create a competition-ready engineering notebook that demonstrates the complete design process.",
@@ -497,7 +497,7 @@
   },
   {
     "title": "Post-Competition Analysis and Improvement",
-    "category": "engineering",
+    "category": "methodology",
     "grade_level": "4",
     "duration_minutes": 60,
     "description": "Systematic analysis of competition performance to identify improvements for future events.",
