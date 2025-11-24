@@ -448,6 +448,43 @@ export interface GetPracticeSessionsFilters {
   limit?: number;
 }
 
+// Team Management Types
+export interface CreateTeamRequest {
+  team_number: string;
+  season_year: string;
+}
+
+export interface UpdateTeamRequest {
+  team_number?: string;
+  season_year?: string;
+}
+
+export interface AddTeamMemberRequest {
+  user_id: string;
+  role: 'Driver' | 'Builder' | 'Programmer' | 'Scout' | 'Coach';
+}
+
+export interface UpdateTeamMemberRoleRequest {
+  role: 'Driver' | 'Builder' | 'Programmer' | 'Scout' | 'Coach';
+}
+
+export interface TeamWithMembers extends Team {
+  members: TeamMember[];
+}
+
+export interface TeamStats {
+  team_id: string;
+  member_count: number;
+  practice_session_count: number;
+  competition_count: number;
+}
+
+export interface GetTeamsFilters {
+  season_year?: string;
+  page?: number;
+  limit?: number;
+}
+
 // =====================================================
 // UTILITY TYPES
 // =====================================================

@@ -15,6 +15,7 @@ import { skillsRouter } from './modules/skills/skills.routes';
 import { notebookRouter } from './modules/notebook/notebook.routes';
 import { badgesRouter } from './modules/badges/badges.routes';
 import { practiceSessionsRouter } from './modules/practice-sessions/practice-sessions.routes';
+import { teamsRouter } from './modules/teams/teams.routes';
 
 // Load environment variables
 dotenv.config();
@@ -104,6 +105,7 @@ app.get('/api/v1', (_req, res) => {
       'Engineering Notebook with File Uploads',
       'Badge System & Gamification',
       'Practice Session Management & Rotations',
+      'Team Management & Member Tracking',
     ],
     endpoints: {
       auth: '/api/v1/auth',
@@ -112,6 +114,7 @@ app.get('/api/v1', (_req, res) => {
       notebook: '/api/v1/notebook',
       badges: '/api/v1/badges',
       practiceSessions: '/api/v1/practice-sessions',
+      teams: '/api/v1/teams',
     },
   });
 });
@@ -123,6 +126,7 @@ app.use('/api/v1/skills', skillsRouter);
 app.use('/api/v1/notebook', notebookRouter);
 app.use('/api/v1/badges', badgesRouter);
 app.use('/api/v1/practice-sessions', practiceSessionsRouter);
+app.use('/api/v1/teams', teamsRouter);
 
 // 404 handler
 app.use((req, res) => {
@@ -160,12 +164,13 @@ async function startServer() {
       console.log(`📖 Docs: http://localhost:${PORT}/api/docs`);
       console.log('');
       console.log('📡 Available Endpoints:');
-      console.log(`   Auth:             /api/v1/auth`);
-      console.log(`   Lessons:          /api/v1/lessons`);
-      console.log(`   Skills:           /api/v1/skills`);
-      console.log(`   Notebook:         /api/v1/notebook`);
-      console.log(`   Badges:           /api/v1/badges`);
+      console.log(`   Auth:              /api/v1/auth`);
+      console.log(`   Lessons:           /api/v1/lessons`);
+      console.log(`   Skills:            /api/v1/skills`);
+      console.log(`   Notebook:          /api/v1/notebook`);
+      console.log(`   Badges:            /api/v1/badges`);
       console.log(`   Practice Sessions: /api/v1/practice-sessions`);
+      console.log(`   Teams:             /api/v1/teams`);
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log('');
     });
