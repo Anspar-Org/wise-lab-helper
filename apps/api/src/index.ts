@@ -5,6 +5,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import { initializeDatabase, getDatabase } from './config/database';
 
 // Import routers
@@ -31,7 +32,50 @@ app.use(morgan('dev')); // HTTP request logging
 // Static file serving for uploads
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
-// Health check endpoint
+// Swagger API documentation (skip in test environment for performance)
+if (process.env.NODE_ENV !== 'test') {
+  const { swaggerSpec, swaggerUiOptions } = require('./config/swagger');
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions));
+}
+
+/**
+ * @openapi
+ * /health:
+ *   get:
+ *     tags:
+ *       - Health
+ *     summary: Health check endpoint
+ *     description: Returns the health status of the API and database connection
+ *     responses:
+ *       200:
+ *         description: Health check successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   enum: [healthy, unhealthy]
+ *                   description: Overall system health status
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   description: Current server timestamp
+ *                 uptime:
+ *                   type: number
+ *                   description: Server uptime in seconds
+ *                 environment:
+ *                   type: string
+ *                   description: Current environment (development, production)
+ *                 database:
+ *                   type: string
+ *                   enum: [connected, disconnected]
+ *                   description: Database connection status
+ *                 localOnly:
+ *                   type: boolean
+ *                   description: Whether API is running in local-only mode (data privacy)
+ */
 app.get('/health', async (_req, res) => {
   const db = getDatabase();
   const dbHealthy = await db.healthCheck();
@@ -109,6 +153,7 @@ async function startServer() {
       console.log(`🌐 Port: ${PORT}`);
       console.log(`🏥 Health: http://localhost:${PORT}/health`);
       console.log(`📚 API: http://localhost:${PORT}/api/v1`);
+      console.log(`📖 Docs: http://localhost:${PORT}/api/docs`);
       console.log('');
       console.log('📡 Available Endpoints:');
       console.log(`   Auth:     /api/v1/auth`);
