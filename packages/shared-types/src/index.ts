@@ -411,6 +411,43 @@ export interface CreateNotebookEntryRequest {
   entry_date?: Date;
 }
 
+export interface CreatePracticeSessionRequest {
+  team_id: string;
+  session_date: Date | string;
+  duration_minutes: number;
+  notes?: string;
+}
+
+export interface UpdatePracticeSessionRequest {
+  session_date?: Date | string;
+  duration_minutes?: number;
+  notes?: string;
+}
+
+export interface CreateSessionRotationRequest {
+  student_id: string;
+  station: 'Building' | 'Programming' | 'Driving' | 'Documentation';
+  start_time: string;
+}
+
+export interface UpdateSessionRotationRequest {
+  station?: 'Building' | 'Programming' | 'Driving' | 'Documentation';
+  start_time?: string;
+}
+
+export interface PracticeSessionWithRotations extends PracticeSession {
+  rotations: SessionRotation[];
+  rotation_count?: number;
+}
+
+export interface GetPracticeSessionsFilters {
+  team_id?: string;
+  date_from?: string | Date;
+  date_to?: string | Date;
+  page?: number;
+  limit?: number;
+}
+
 // =====================================================
 // UTILITY TYPES
 // =====================================================

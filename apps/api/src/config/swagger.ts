@@ -236,6 +236,80 @@ const options: swaggerJsdoc.Options = {
             },
           },
         },
+        PracticeSession: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+              format: 'uuid',
+              description: 'Practice session unique identifier',
+            },
+            team_id: {
+              type: 'string',
+              format: 'uuid',
+              description: 'Team unique identifier',
+            },
+            session_date: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Date of the practice session',
+            },
+            duration_minutes: {
+              type: 'integer',
+              description: 'Duration in minutes',
+            },
+            notes: {
+              type: 'string',
+              nullable: true,
+              description: 'Session notes',
+            },
+            created_at: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Session creation timestamp',
+            },
+            updated_at: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Session last update timestamp',
+            },
+          },
+        },
+        SessionRotation: {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+              format: 'uuid',
+              description: 'Rotation unique identifier',
+            },
+            session_id: {
+              type: 'string',
+              format: 'uuid',
+              description: 'Practice session ID',
+            },
+            student_id: {
+              type: 'string',
+              format: 'uuid',
+              description: 'Student ID',
+            },
+            station: {
+              type: 'string',
+              enum: ['Building', 'Programming', 'Driving', 'Documentation'],
+              description: 'Station assignment',
+            },
+            start_time: {
+              type: 'string',
+              pattern: '^([0-1]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$',
+              description: 'Rotation start time (HH:MM or HH:MM:SS)',
+            },
+            created_at: {
+              type: 'string',
+              format: 'date-time',
+              description: 'Rotation creation timestamp',
+            },
+          },
+        },
       },
     },
     tags: [
@@ -258,6 +332,14 @@ const options: swaggerJsdoc.Options = {
       {
         name: 'Notebook',
         description: 'Engineering notebook with media uploads',
+      },
+      {
+        name: 'Practice Sessions',
+        description: 'Practice session management and rotation tracking',
+      },
+      {
+        name: 'Rotations',
+        description: 'Student rotation management within practice sessions',
       },
       {
         name: 'Health',
