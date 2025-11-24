@@ -1,6 +1,166 @@
 # STEM Lab Assistant - Completed Work Log
 
-**Last Updated:** November 23, 2025
+**Last Updated:** November 24, 2025
+
+---
+
+## November 24, 2025 - OpenAPI/Swagger Documentation Complete
+
+### Overview
+Implemented comprehensive OpenAPI/Swagger documentation for all 50+ API endpoints across 5 modules. Interactive documentation now accessible at `/api/docs` when server is running.
+
+### Branch: `feat/openapi-documentation`
+
+**Commit:** `297f852` - feat(api): Add comprehensive OpenAPI/Swagger documentation
+
+### Implementation Details
+
+**Dependencies Added:**
+- `swagger-jsdoc` (^2.2.0) - JSDoc → OpenAPI spec generation
+- `swagger-ui-express` (^5.0.1) - Interactive API documentation UI
+- `@types/swagger-jsdoc` (dev)
+- `@types/swagger-ui-express` (dev)
+
+**Configuration:**
+- Created `/apps/api/src/config/swagger.ts` with OpenAPI 3.0 spec
+- Defined reusable schema components (User, Badge, Lesson, Skill, NotebookEntry, etc.)
+- Configured security schemes (JWT bearer authentication)
+- Added custom CSS styling for Swagger UI
+- Conditional loading (skips in test environment for performance)
+
+**Endpoints Documented:**
+
+**Authentication Module (8 endpoints):**
+- POST `/api/v1/auth/register/student` - Student registration with PIN/Animal Grid
+- POST `/api/v1/auth/register/staff` - Staff registration with password
+- POST `/api/v1/auth/login` - Universal login endpoint
+- POST `/api/v1/auth/logout` - Logout and token revocation
+- POST `/api/v1/auth/refresh` - Token refresh
+- GET `/api/v1/auth/me` - Current user profile
+- POST `/api/v1/auth/avatar/generate` - Generate avatar preview
+- GET `/api/v1/auth/avatar/styles` - Available avatar styles
+
+**Badges Module (11 endpoints):**
+- GET `/api/v1/badges` - List all badges with filters
+- GET `/api/v1/badges/:id` - Get badge by ID
+- POST `/api/v1/badges` - Create badge (admin only)
+- PUT `/api/v1/badges/:id` - Update badge (admin only)
+- DELETE `/api/v1/badges/:id` - Delete badge (admin only)
+- GET `/api/v1/students/:studentId/badges` - Get student's badges
+- POST `/api/v1/students/:studentId/badges` - Award badge to student
+- GET `/api/v1/students/:studentId/badges/:badgeId/progress` - Badge progress
+- GET `/api/v1/me/badges` - Current user's badges
+- GET `/api/v1/me/badges/progress` - Current user's badge progress
+- POST `/api/v1/badges/check-awards` - Auto-award badges
+
+**Lessons Module (13 endpoints):**
+- GET `/api/v1/lessons` - List lessons with filters
+- GET `/api/v1/lessons/:id` - Get lesson details
+- POST `/api/v1/lessons` - Create lesson (coach/admin)
+- PUT `/api/v1/lessons/:id` - Update lesson
+- DELETE `/api/v1/lessons/:id` - Delete lesson
+- PATCH `/api/v1/lessons/:id/publish` - Publish/unpublish
+- GET `/api/v1/lessons/:id/steps` - Get lesson steps
+- POST `/api/v1/lessons/:id/steps` - Create step
+- PUT `/api/v1/lessons/:id/steps/:stepId` - Update step
+- DELETE `/api/v1/lessons/:id/steps/:stepId` - Delete step
+- POST `/api/v1/lessons/:id/start` - Start lesson
+- GET `/api/v1/lessons/:id/progress` - Get progress
+- PUT `/api/v1/lessons/:id/progress` - Update progress
+- POST `/api/v1/lessons/:id/complete` - Complete lesson
+- GET `/api/v1/students/:studentId/progress` - All student progress
+
+**Skills Module (10 endpoints):**
+- GET `/api/v1/skills` - List all skills with filters
+- GET `/api/v1/skills/:id` - Get skill by ID
+- POST `/api/v1/skills` - Create skill (coach/admin)
+- PUT `/api/v1/skills/:id` - Update skill
+- DELETE `/api/v1/skills/:id` - Delete skill (admin)
+- GET `/api/v1/skills/:skillId/students` - Students assessed for skill
+- GET `/api/v1/students/:studentId/skills` - Student's skill profile
+- POST `/api/v1/students/:studentId/skills` - Assess student skill
+- PUT `/api/v1/students/:studentId/skills/:skillId` - Update assessment
+- GET `/api/v1/students/:studentId/skills/:skillId/history` - Assessment history
+- GET `/api/v1/me/skills` - Current user's assessments
+
+**Notebook Module (8 endpoints):**
+- GET `/api/v1/notebook/search` - Search entries
+- GET `/api/v1/notebook` - List entries with filters
+- GET `/api/v1/notebook/:id` - Get entry by ID
+- POST `/api/v1/notebook` - Create entry
+- PUT `/api/v1/notebook/:id` - Update entry
+- DELETE `/api/v1/notebook/:id` - Delete entry
+- POST `/api/v1/notebook/:id/media` - Upload media files
+- DELETE `/api/v1/notebook/:id/media/:filename` - Delete media
+
+### Documentation Features
+
+**Each endpoint includes:**
+- Summary and detailed description
+- Request parameters, query params, and body schemas with examples
+- All response codes (200, 201, 400, 401, 403, 404, 500) with schemas
+- Authentication requirements (JWT bearer token)
+- Role-based access control (student, coach, admin)
+- Validation rules and constraints
+- Realistic example data
+
+**Interactive Swagger UI Features:**
+- Persistent authorization (test endpoints with real tokens)
+- Try-it-out functionality for all endpoints
+- Request/response examples
+- Schema models with data types
+- Custom styling (hidden topbar, branded colors)
+
+### Testing Results
+
+**Before Documentation:**
+- 297 tests passing
+- Zero TypeScript errors
+- Build successful
+
+**After Documentation:**
+- 297 tests passing (296 without database)
+- Zero TypeScript errors
+- Build successful (~6 seconds)
+- Swagger UI loads in <1 second in non-test environments
+
+### Performance Optimizations
+
+**Issue:** Swagger file scanning caused test timeouts
+**Solution:** Conditional loading - skip Swagger in `NODE_ENV=test`
+
+```typescript
+if (process.env.NODE_ENV !== 'test') {
+  const { swaggerSpec, swaggerUiOptions } = require('./config/swagger');
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions));
+}
+```
+
+### Files Modified
+
+**New Files:**
+- `apps/api/src/config/swagger.ts` (290 lines) - OpenAPI configuration
+
+**Modified Files:**
+- `apps/api/package.json` - Added swagger dependencies
+- `apps/api/src/index.ts` - Added Swagger UI route, health endpoint docs
+- `apps/api/src/modules/auth/auth.routes.ts` - Added OpenAPI JSDoc comments
+- `apps/api/src/modules/badges/badges.routes.ts` - Added OpenAPI JSDoc comments
+- `apps/api/src/modules/lessons/lessons.routes.ts` - Added OpenAPI JSDoc comments
+- `apps/api/src/modules/skills/skills.routes.ts` - Added OpenAPI JSDoc comments
+- `apps/api/src/modules/notebook/notebook.routes.ts` - Added OpenAPI JSDoc comments
+
+**Total Documentation Added:** ~4,200 lines of OpenAPI JSDoc comments
+
+### Success Metrics Achieved
+
+- ✅ All 50+ endpoints documented with OpenAPI/Swagger
+- ✅ Interactive documentation UI at `/api/docs`
+- ✅ Request/response examples for each endpoint
+- ✅ Authentication requirements clearly stated
+- ✅ Can generate API client code from OpenAPI spec
+- ✅ Zero breaking changes to existing functionality
+- ✅ All tests still passing
 
 ---
 
