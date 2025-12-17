@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelling Practice - STEM Lab Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .setup-screen, .practice-screen {
+            display: none;
+        }
+
+        .setup-screen.active, .practice-screen.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #764ba2;
+        }
+
+        .btn-secondary:hover {
+            background: #653a8e;
+        }
+
+        .btn-success {
+            background: #48bb78;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .practice-content {
+            text-align: center;
+        }
+
+        .word-number {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .word-display {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 15px;
+            border: 3px dashed #e0e0e0;
+        }
+
+        .word-display.revealed {
+            border-color: #667eea;
+            background: #eef2ff;
+        }
+
+        .word-display .hidden-text {
+            color: #ccc;
+            font-size: 0.5em;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .help-text {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .word-display {
+                font-size: 2em;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Spelling Practice</h1>
+        <p class="subtitle">Practice your spelling words with AI voice</p>
+
+        <!-- Setup Screen -->
+        <div class="setup-screen active" id="setupScreen">
+            <div class="help-text">
+                <strong>How to use:</strong><br>
+                1. Enter your spelling words (one per line)<br>
+                2. Click "Start Practice"<br>
+                3. Listen to each word and try to spell it<br>
+                4. Click "Reveal Word" to check your answer
+            </div>
+
+            <label for="wordList">Enter your spelling words (one per line):</label>
+            <textarea id="wordList" placeholder="example&#10;science&#10;technology&#10;engineering&#10;mathematics"></textarea>
+
+            <button class="btn" onclick="startPractice()">Start Practice</button>
+
+            <div id="setupError" class="error" style="display: none;"></div>
+        </div>
+
+        <!-- Practice Screen -->
+        <div class="practice-screen" id="practiceScreen">
+            <div class="stats">
+                <div class="word-number" id="wordNumber">Word 1 of 5</div>
+            </div>
+
+            <div class="word-display" id="wordDisplay">
+                <span class="hidden-text">Click "Speak Word" to hear the word</span>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="speakWord()">🔊 Speak Word</button>
+                <button class="btn btn-success" onclick="revealWord()" id="revealBtn">👁️ Reveal Word</button>
+            </div>
+
+            <button class="btn" onclick="nextWord()" id="nextBtn" style="display: none;">Next Word →</button>
+            <button class="btn" onclick="finishPractice()" id="finishBtn" style="display: none;">Finish Practice</button>
+            <button class="btn btn-secondary" onclick="resetPractice()">↩️ Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        let words = [];
+        let currentWordIndex = 0;
+        let isRevealed = false;
+        let speechSynthesis = window.speechSynthesis;
+
+        // Check if browser supports speech synthesis
+        if (!speechSynthesis) {
+            alert('Sorry, your browser does not support text-to-speech. Please use a modern browser like Chrome, Firefox, or Safari.');
+        }
+
+        function startPractice() {
+            const wordListText = document.getElementById('wordList').value.trim();
+            const setupError = document.getElementById('setupError');
+
+            if (!wordListText) {
+                setupError.textContent = 'Please enter at least one word!';
+                setupError.style.display = 'block';
+                return;
+            }
+
+            // Parse and clean word list
+            words = wordListText
+                .split('\n')
+                .map(word => word.trim())
+                .filter(word => word.length > 0);
+
+            if (words.length === 0) {
+                setupError.textContent = 'Please enter at least one valid word!';
+                setupError.style.display = 'block';
+                return;
+            }
+
+            // Shuffle words randomly
+            words = shuffleArray(words);
+
+            // Switch to practice screen
+            document.getElementById('setupScreen').classList.remove('active');
+            document.getElementById('practiceScreen').classList.add('active');
+
+            // Start with first word
+            currentWordIndex = 0;
+            showCurrentWord();
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function showCurrentWord() {
+            isRevealed = false;
+            const wordDisplay = document.getElementById('wordDisplay');
+            const wordNumber = document.getElementById('wordNumber');
+            const revealBtn = document.getElementById('revealBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const finishBtn = document.getElementById('finishBtn');
+
+            // Update word number
+            wordNumber.textContent = `Word ${currentWordIndex + 1} of ${words.length}`;
+
+            // Reset display
+            wordDisplay.innerHTML = '<span class="hidden-text">Click "Speak Word" to hear the word</span>';
+            wordDisplay.classList.remove('revealed');
+
+            // Show/hide buttons
+            revealBtn.style.display = 'block';
+            nextBtn.style.display = 'none';
+            finishBtn.style.display = 'none';
+
+            // Automatically speak the word
+            setTimeout(() => speakWord(), 500);
+        }
+
+        function speakWord() {
+            if (!speechSynthesis) {
+                alert('Text-to-speech is not available in your browser.');
+                return;
+            }
+
+            // Cancel any ongoing speech
+            speechSynthesis.cancel();
+
+            const currentWord = words[currentWordIndex];
+            const utterance = new SpeechSynthesisUtterance(currentWord);
+
+            // Configure speech settings for clarity
+            utterance.rate = 0.8;  // Slightly slower for spelling practice
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            speechSynthesis.speak(utterance);
+        }
+
+        function revealWord() {
+            if (isRevealed) return;
+
+            isRevealed = true;
+            const wordDisplay = document.getElementById('wordDisplay');
+            const currentWord = words[currentWordIndex];
+            const revealBtn = document.getElementById('revealBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const finishBtn = document.getElementById('finishBtn');
+
+            // Show the word
+            wordDisplay.textContent = currentWord;
+            wordDisplay.classList.add('revealed');
+
+            // Hide reveal button
+            revealBtn.style.display = 'none';
+
+            // Show appropriate next button
+            if (currentWordIndex < words.length - 1) {
+                nextBtn.style.display = 'block';
+            } else {
+                finishBtn.style.display = 'block';
+            }
+        }
+
+        function nextWord() {
+            if (currentWordIndex < words.length - 1) {
+                currentWordIndex++;
+                showCurrentWord();
+            }
+        }
+
+        function finishPractice() {
+            if (confirm('Great job! Would you like to practice these words again?')) {
+                // Shuffle and restart with same words
+                words = shuffleArray(words);
+                currentWordIndex = 0;
+                showCurrentWord();
+            } else {
+                resetPractice();
+            }
+        }
+
+        function resetPractice() {
+            // Stop any ongoing speech
+            if (speechSynthesis) {
+                speechSynthesis.cancel();
+            }
+
+            // Reset state
+            words = [];
+            currentWordIndex = 0;
+            isRevealed = false;
+
+            // Switch back to setup screen
+            document.getElementById('practiceScreen').classList.remove('active');
+            document.getElementById('setupScreen').classList.add('active');
+        }
+
+        // Stop speech when page is closed
+        window.addEventListener('beforeunload', () => {
+            if (speechSynthesis) {
+                speechSynthesis.cancel();
+            }
+        });
+    </script>
+</body>
+</html>

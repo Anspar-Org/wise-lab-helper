@@ -23,7 +23,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(helmet()); // Security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP for local-only app (allows inline scripts)
+})); // Security headers
 app.use(cors()); // Enable CORS
 app.use(compression()); // Compress responses
 app.use(express.json()); // Parse JSON bodies
@@ -32,6 +34,9 @@ app.use(morgan('dev')); // HTTP request logging
 
 // Static file serving for uploads
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
+
+// Static file serving for web apps (spelling practice, etc.)
+app.use('/apps', express.static(path.join(__dirname, '../public')));
 
 // Swagger API documentation (skip in test environment for performance)
 if (process.env.NODE_ENV !== 'test') {
@@ -166,6 +171,9 @@ async function startServer() {
       console.log(`   Notebook:         /api/v1/notebook`);
       console.log(`   Badges:           /api/v1/badges`);
       console.log(`   Practice Sessions: /api/v1/practice-sessions`);
+      console.log('');
+      console.log('🎯 Web Apps:');
+      console.log(`   Spelling Practice: http://localhost:${PORT}/apps/spelling-practice.html`);
       console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       console.log('');
     });
